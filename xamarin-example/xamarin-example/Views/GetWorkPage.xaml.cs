@@ -14,20 +14,14 @@ namespace xamarin_example.Views
             layout.Children.Add(new Label
             {
                 Text = "Número de Obra desde initialize",
-                //VerticalOptions = LayoutOptions.Center,
-                //HorizontalOptions = LayoutOptions.Center,
             });
             layout.Children.Add(new Label
             {
                 Text = "Nombre",
-                //VerticalOptions = LayoutOptions.Center,
-                //HorizontalOptions = LayoutOptions.Center,
             });
             layout.Children.Add(new Label
             {
                 Text = "Id de Obra",
-                //VerticalOptions = LayoutOptions.Center,
-                //HorizontalOptions = LayoutOptions.Center,
             });
 
             Content = layout;
