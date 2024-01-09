@@ -10,28 +10,37 @@ namespace xamarin_example.Views
         {
             InitializeComponent();
 
-            //StackLayout layout = new StackLayout();
-            //layout.Children.Add(new Label
-            //{
-            //    Text = "Número de Obra desde initialize",
-            //    VerticalOptions = LayoutOptions.Center,
-            //    HorizontalOptions = LayoutOptions.Center,
-            //});
-            //layout.Children.Add(new Label
-            //{
-            //    Text = "Nombre",
-            //    VerticalOptions = LayoutOptions.Center,
-            //    HorizontalOptions = LayoutOptions.Center,
-            //});
-            //layout.Children.Add(new Label
-            //{
-            //    Text = "Id de Obra",
-            //    VerticalOptions = LayoutOptions.Center,
-            //    HorizontalOptions = LayoutOptions.Center,
-            //});
+            StackLayout layout = new StackLayout();
+            layout.Children.Add(new Label
+            {
+                Text = "Número de Obra desde initialize",
+                //VerticalOptions = LayoutOptions.Center,
+                //HorizontalOptions = LayoutOptions.Center,
+            });
+            layout.Children.Add(new Label
+            {
+                Text = "Nombre",
+                //VerticalOptions = LayoutOptions.Center,
+                //HorizontalOptions = LayoutOptions.Center,
+            });
+            layout.Children.Add(new Label
+            {
+                Text = "Id de Obra",
+                //VerticalOptions = LayoutOptions.Center,
+                //HorizontalOptions = LayoutOptions.Center,
+            });
 
-            //Content = layout;
+            Content = layout;
 
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    Padding = new Thickness(40, 60, 40, 40);
+                    break;
+                default:
+                    Padding = new Thickness(40);
+                    break;
+            }
         }
     }
 }
