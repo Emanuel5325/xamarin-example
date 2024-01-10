@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace xamarin_example.Views
@@ -6,6 +7,8 @@ namespace xamarin_example.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GetWorkPage : ContentPage
     {
+        private readonly GetWorkViewModel _viewModel;
+
         public GetWorkPage()
         {
             InitializeComponent();
@@ -35,6 +38,8 @@ namespace xamarin_example.Views
                     Padding = new Thickness(40);
                     break;
             }
+
+            BindingContext = _viewModel =  new GetWorkViewModel();
         }
     }
 }
