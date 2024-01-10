@@ -1,4 +1,7 @@
-﻿using ViewModels;
+﻿using Models.Work;
+using Services.Work;
+using System.Linq;
+using ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,7 +10,7 @@ namespace xamarin_example.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GetWorkPage : ContentPage
     {
-        private readonly GetWorkViewModel _viewModel;
+        private IWorkApiClient _workService => DependencyService.Get<IWorkApiClient>();
 
         public GetWorkPage()
         {
@@ -23,7 +26,7 @@ namespace xamarin_example.Views
                     break;
             }
 
-            BindingContext = _viewModel =  new GetWorkViewModel();
+            BindingContext = new GetWorkViewModel();
         }
 
         private void OnWorksQuantityCompleted(object sender, System.EventArgs e)
@@ -47,8 +50,25 @@ namespace xamarin_example.Views
                 return;
             }
 
-            WorkName.Text = entryText;
-            WorkId.Text = entryText;
+            if (int.TryParse(entryText, out int quantity))
+            {
+                WorkName.Text = "error de casteo de número";
+                WorkId.Text = "error de casteo de número";
+            }
+
+            const int pageSize = 10;
+            int page = quantity % pageSize;
+
+            WorkData work = _workService.All(page, pageSize).FirstOrDefault();
+
+            if (work == null)
+            {
+                WorkName.Text = "error de servicio";
+                WorkId.Text = "error de servicio";
+            }
+
+            WorkName.Text = work.Name;
+            WorkId.Text = work.Id.ToString();
         }
     }
 }

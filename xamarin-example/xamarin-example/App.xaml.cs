@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Services.Work;
+using Xamarin.Forms;
 using xamarin_example.Services;
 
 namespace xamarin_example
@@ -11,6 +12,7 @@ namespace xamarin_example
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
+            DependencyService.Register<IWorkApiClient, WorkApiClient>();
             MainPage = new AppShell();
         }
 
