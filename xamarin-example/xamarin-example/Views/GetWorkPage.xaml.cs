@@ -14,17 +14,22 @@ namespace xamarin_example.Views
             InitializeComponent();
 
             StackLayout layout = new StackLayout();
+
+            TextAlignment labelAlignment = TextAlignment.Start;
             layout.Children.Add(new Label
             {
                 Text = "Número de Obra desde initialize",
+                HorizontalTextAlignment = labelAlignment,
             });
             layout.Children.Add(new Label
             {
                 Text = "Nombre",
+                HorizontalTextAlignment = labelAlignment,
             });
             layout.Children.Add(new Label
             {
                 Text = "Id de Obra",
+                HorizontalTextAlignment = labelAlignment,
             });
 
             Content = layout;
