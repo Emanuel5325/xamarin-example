@@ -1,4 +1,5 @@
-﻿using ViewModels;
+﻿using Services.Work;
+using ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,7 +8,7 @@ namespace xamarin_example.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GetWorkPage : ContentPage
     {
-        private readonly GetWorkViewModel _viewModel;
+        private IWorkApiClient _workService => DependencyService.Get<IWorkApiClient>();
 
         public GetWorkPage()
         {
@@ -40,6 +41,8 @@ namespace xamarin_example.Views
 
         private void ReloadLabels(Entry entry)
         {
+            // emanuel5325 - esto tiene que llamar al llamado a la API
+
             string entryText = entry.Text;
 
             if (string.IsNullOrEmpty(entryText))
