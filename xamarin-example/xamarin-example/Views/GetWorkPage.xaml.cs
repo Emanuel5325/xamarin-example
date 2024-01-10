@@ -1,5 +1,6 @@
 ﻿using Models.Work;
 using Services.Work;
+using System.Linq;
 using ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -58,7 +59,7 @@ namespace xamarin_example.Views
             const int pageSize = 10;
             int page = quantity % pageSize;
 
-            WorkData work = _workService.All(page, pageSize);
+            WorkData work = _workService.All(page, pageSize).FirstOrDefault();
 
             if (work == null)
             {

@@ -2,13 +2,14 @@
 using Newtonsoft.Json;
 using RestSharp;
 using System;
+using System.Collections.Generic;
 
 namespace Services.Work
 {
     internal class WorkApiClient : IWorkApiClient
     {
 
-        public WorkData All(int page = 0, int pageSize = 100)
+        public List<WorkData> All(int page = 0, int pageSize = 100)
         {
             //return new WorkData
             //{
@@ -18,7 +19,7 @@ namespace Services.Work
 
 
             // Crea una instancia de RestClient
-            RestClient client = new RestClient("http://localhost:5501");
+            RestClient client = new RestClient("http://10.0.2.2:5501");
 
             // Define la URL de la API
             string uri = $"/api/works/all";
@@ -40,7 +41,7 @@ namespace Services.Work
                 // Imprime la respuesta
                 Console.WriteLine(responseBody);
 
-                return JsonConvert.DeserializeObject<WorkData>(responseBody);
+                return JsonConvert.DeserializeObject<List<WorkData>>(responseBody);
             }
             else
             {
