@@ -1,18 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="xamarin_example.Views.GetWorkPage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="xamarin_example.Views.GetWorkPage"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Buscar" Clicked="OnSearchButtonClicked" Order="Primary"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Número de obra"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Nombre"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="Id de Obra"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Número de obras a buscar" HorizontalTextAlignment="Start"></Label>
+            <Entry Keyboard="Numeric" x:Name="WorksQuantity" Completed="OnWorksQuantityCompleted" Placeholder="Ingrese número de obras a buscar"></Entry>
+            <Label Padding="0,0,0,20"></Label>
+            <BoxView HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="1" WidthRequest="50" Color="Gray"></BoxView>
+            <Label Text="Nombre" HorizontalTextAlignment="Start"></Label>
+            <Label x:Name="WorkName" Text ="-" HorizontalTextAlignment="Center" Padding="0,0,0,20"></Label>
+            <Label Text="Id de Obra" HorizontalTextAlignment="Start"></Label>
+            <Label x:Name="WorkId" Text="-" HorizontalTextAlignment="Center"></Label>
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>
