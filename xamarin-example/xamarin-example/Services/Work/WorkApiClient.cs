@@ -17,8 +17,6 @@ namespace Services.Work
             //};
 
 
-
-
             // Crea una instancia de RestClient
             RestClient client = new RestClient("http://localhost:5501");
 
