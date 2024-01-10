@@ -1,5 +1,5 @@
-﻿using Services.Work;
-using System.Threading.Tasks;
+﻿using Models.Work;
+using Services.Work;
 using ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -32,15 +32,15 @@ namespace xamarin_example.Views
         {
             Entry entry = (Entry)sender;
 
-            _=ReloadLabels(entry);
+            ReloadLabels(entry);
         }
 
         private void OnSearchButtonClicked(object sender, System.EventArgs e)
         {
-            _=ReloadLabels(WorksQuantity);
+            ReloadLabels(WorksQuantity);
         }
 
-        private async Task ReloadLabels(Entry entry)
+        private void ReloadLabels(Entry entry)
         {
             string entryText = entry.Text;
 
@@ -58,16 +58,16 @@ namespace xamarin_example.Views
             const int pageSize = 10;
             int page = quantity % pageSize;
 
-            global::Models.Work.ApiRequestResult<global::Models.Work.WorkData> response = await _workService.All(page, pageSize);
+            WorkData work = _workService.All(page, pageSize);
 
-            if (response.HasError)
+            if (work == null)
             {
                 WorkName.Text = "error de servicio";
                 WorkId.Text = "error de servicio";
             }
 
-            WorkName.Text = response.Data.Name;
-            WorkId.Text = response.Data.Id.ToString();
+            WorkName.Text = work.Name;
+            WorkId.Text = work.Id.ToString();
         }
     }
 }
