@@ -12,7 +12,7 @@ namespace xamarin_example
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            DependencyService.Register<WorkApiClient, IWorkApiClient>();
+            DependencyService.Register<IWorkApiClient, WorkApiClient>();
             MainPage = new AppShell();
         }
 

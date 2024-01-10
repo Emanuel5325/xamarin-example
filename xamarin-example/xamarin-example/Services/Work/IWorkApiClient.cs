@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using Models.Work;
+using System.Threading.Tasks;
 
 namespace Services.Work
 {
     internal interface IWorkApiClient
     {
-        Task<APIRequestResult<WorkData>> Get(int page = 0, int pageSize = 100);
+        Task<ApiRequestResult<WorkData>> All(int page = 0, int pageSize = 100);
     }
 }

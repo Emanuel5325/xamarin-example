@@ -1,4 +1,5 @@
 ﻿using Services.Work;
+using System.Threading.Tasks;
 using ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,25 +25,23 @@ namespace xamarin_example.Views
                     break;
             }
 
-            BindingContext = _viewModel =  new GetWorkViewModel();
+            BindingContext = new GetWorkViewModel();
         }
 
         private void OnWorksQuantityCompleted(object sender, System.EventArgs e)
         {
             Entry entry = (Entry)sender;
 
-            ReloadLabels(entry);
+            _=ReloadLabels(entry);
         }
 
         private void OnSearchButtonClicked(object sender, System.EventArgs e)
         {
-            ReloadLabels(WorksQuantity);
+            _=ReloadLabels(WorksQuantity);
         }
 
-        private void ReloadLabels(Entry entry)
+        private async Task ReloadLabels(Entry entry)
         {
-            // emanuel5325 - esto tiene que llamar al llamado a la API
-
             string entryText = entry.Text;
 
             if (string.IsNullOrEmpty(entryText))
@@ -50,8 +49,25 @@ namespace xamarin_example.Views
                 return;
             }
 
-            WorkName.Text = entryText;
-            WorkId.Text = entryText;
+            if (int.TryParse(entryText, out int quantity))
+            {
+                WorkName.Text = "error de casteo de número";
+                WorkId.Text = "error de casteo de número";
+            }
+
+            const int pageSize = 10;
+            int page = quantity % pageSize;
+
+            global::Models.Work.ApiRequestResult<global::Models.Work.WorkData> work = await _workService.All(page, pageSize);
+
+            if (work.HasError)
+            {
+                WorkName.Text = "error de servicio";
+                WorkId.Text = "error de servicio";
+            }
+
+            WorkName.Text = work.Data.Name;
+            WorkId.Text = work.Data.Id.ToString();
         }
     }
 }

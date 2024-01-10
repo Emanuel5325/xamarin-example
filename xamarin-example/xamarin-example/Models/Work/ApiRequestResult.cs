@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 
 namespace Models.Work
 {
-    public class APIRequestResult
+    public class ApiRequestResult
     {
         public bool HasError { get; set; }
 
@@ -14,7 +14,7 @@ namespace Models.Work
         public HttpResponseHeaders Headers { get; set; }
     }
 
-    public class APIRequestResult<T> : APIRequestResult
+    public class ApiRequestResult<T> : ApiRequestResult
     {
         public T Data { get; set; }
     }
