@@ -58,16 +58,16 @@ namespace xamarin_example.Views
             const int pageSize = 10;
             int page = quantity % pageSize;
 
-            global::Models.Work.ApiRequestResult<global::Models.Work.WorkData> work = await _workService.All(page, pageSize);
+            global::Models.Work.ApiRequestResult<global::Models.Work.WorkData> response = await _workService.All(page, pageSize);
 
-            if (work.HasError)
+            if (response.HasError)
             {
                 WorkName.Text = "error de servicio";
                 WorkId.Text = "error de servicio";
             }
 
-            WorkName.Text = work.Data.Name;
-            WorkId.Text = work.Data.Id.ToString();
+            WorkName.Text = response.Data.Name;
+            WorkId.Text = response.Data.Id.ToString();
         }
     }
 }
