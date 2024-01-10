@@ -1,7 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              x:Class="xamarin_example.Views.GetWorkPage"
-             Title="{Binding Title}"
-             x:Name="BrowseItemsPage">
+             Title="{Binding Title}">
+    <d:StackLayout>
+        <Label Text="Número de obras a buscar" HorizontalTextAlignment="Start"></Label>
+        <Label Text="Nombre" HorizontalTextAlignment="Start"></Label>
+        <Label Text="Id de Obra" HorizontalTextAlignment="Start"></Label>
+    </d:StackLayout>
 </ContentPage>
