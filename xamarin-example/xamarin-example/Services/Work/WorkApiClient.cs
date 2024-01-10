@@ -28,7 +28,7 @@ namespace Services.Work
             HttpClient client = new HttpClient();
 
             // Define la URL de la API
-            string uri = $"works/all?page={page}&pageSize={pageSize}";
+            string uri = $"http://localhost:5501/api/works/all?page={page}&pageSize={pageSize}";
 
             // Realiza la solicitud GET
             HttpResponseMessage response = client.GetAsync(uri).Result;
