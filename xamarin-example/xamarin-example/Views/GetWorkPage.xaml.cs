@@ -29,6 +29,17 @@ namespace xamarin_example.Views
         private void OnWorksQuantityCompleted(object sender, System.EventArgs e)
         {
             Entry entry = (Entry)sender;
+
+            ReloadLabels(entry);
+        }
+
+        private void OnSearchButtonClicked(object sender, System.EventArgs e)
+        {
+            ReloadLabels(WorksQuantity);
+        }
+
+        private void ReloadLabels(Entry entry)
+        {
             string entryText = entry.Text;
 
             if (string.IsNullOrEmpty(entryText))
