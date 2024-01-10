@@ -6,7 +6,12 @@
              Title="{Binding Title}">
     <d:StackLayout>
         <Label Text="Número de obras a buscar" HorizontalTextAlignment="Start"></Label>
+        <Entry Keyboard="Numeric" Completed="OnWorksQuantityCompleted" Placeholder="Ingrese número de obras a buscar"></Entry>
+        <Label Padding="0,0,0,20"></Label>
+        <BoxView HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="1" WidthRequest="50" Color="Gray"></BoxView>
         <Label Text="Nombre" HorizontalTextAlignment="Start"></Label>
+        <Label x:Name="WorkName" Text ="-" HorizontalTextAlignment="Center" Padding="0,0,0,20"></Label>
         <Label Text="Id de Obra" HorizontalTextAlignment="Start"></Label>
+        <Label x:Name="WorkId" Text="-" HorizontalTextAlignment="Center"></Label>
     </d:StackLayout>
 </ContentPage>

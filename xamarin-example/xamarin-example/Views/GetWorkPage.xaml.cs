@@ -25,5 +25,19 @@ namespace xamarin_example.Views
 
             BindingContext = _viewModel =  new GetWorkViewModel();
         }
+
+        private void OnWorksQuantityCompleted(object sender, System.EventArgs e)
+        {
+            Entry entry = (Entry)sender;
+            string entryText = entry.Text;
+
+            if (string.IsNullOrEmpty(entryText))
+            {
+                return;
+            }
+
+            WorkName.Text = entryText;
+            WorkId.Text = entryText;
+        }
     }
 }
