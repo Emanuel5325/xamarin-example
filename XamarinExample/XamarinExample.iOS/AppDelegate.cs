@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using Foundation;
-using UIKit;
+﻿using Microsoft.Maui.Hosting;
 
 namespace XamarinExample.iOS
 {
@@ -22,10 +17,16 @@ namespace XamarinExample.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            // emanuel5325 - verificar esto
+            //Xamarin.Forms.Forms.Init();
+            //LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        protected override MauiApp CreateMauiApp()
+        {
+            return MauiProgram.CreateMauiApp();
         }
     }
 }
