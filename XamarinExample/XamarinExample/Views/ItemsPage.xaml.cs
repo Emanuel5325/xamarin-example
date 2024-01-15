@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Microsoft.Maui.Controls.Xaml;
 using XamarinExample.Models;
 using XamarinExample.ViewModels;
 using XamarinExample.Views;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample.Views
 {

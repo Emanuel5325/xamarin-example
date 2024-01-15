@@ -2,8 +2,9 @@
 using Services.Work;
 using System.Linq;
 using ViewModels;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Microsoft.Maui.Controls.Xaml;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample.Views
 {
@@ -16,6 +17,7 @@ namespace XamarinExample.Views
         {
             InitializeComponent();
 
+            // TODO Xamarin.Forms.Device.RuntimePlatform is no longer supported. Use Microsoft.Maui.Devices.DeviceInfo.Platform instead. For more details see https://learn.microsoft.com/en-us/dotnet/maui/migration/forms-projects#device-changes
             switch (Device.RuntimePlatform)
             {
                 case Device.iOS:

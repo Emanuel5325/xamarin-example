@@ -1,11 +1,12 @@
 ﻿using ViewModels;
-using Xamarin.Forms;
 using XamarinExample.ViewModels;
 using XamarinExample.Views;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Microsoft.Maui.Controls.Shell
     {
         public AppShell()
         {

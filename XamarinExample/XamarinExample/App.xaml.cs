@@ -1,7 +1,8 @@
 ﻿using Services.Work;
-using Xamarin.Forms;
 using XamarinExample.Services;
 using XamarinExample.Services.Work;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample
 {

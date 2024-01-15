@@ -2,8 +2,6 @@
 using Newtonsoft.Json;
 using RestSharp;
 using Services.Work;
-using System;
-using System.Collections.Generic;
 
 namespace XamarinExample.Services.Work
 {
@@ -14,19 +12,18 @@ namespace XamarinExample.Services.Work
         {
             //return new List<WorkData>()
             //{
-            //    new WorkData
-            //    {
+            //    new() {
             //        Name = "prueba",
             //        Id = 3,
             //    }
             //};
 
 
-            RestClient client = new RestClient("http://10.0.2.2:5501");
+            RestClient client = new("http://10.0.2.2:5501");
 
             string uri = $"/api/works/all";
 
-            RestRequest request = new RestRequest(uri, Method.Get);
+            RestRequest request = new(uri, Method.Get);
 
             request = request.AddQueryParameter("page", page);
             request = request.AddQueryParameter("pageSize", pageSize);

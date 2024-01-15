@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
 using XamarinExample.Models;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample.ViewModels
 {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using Xamarin.Forms;
-
 using XamarinExample.Models;
 using XamarinExample.Services;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample.ViewModels
 {

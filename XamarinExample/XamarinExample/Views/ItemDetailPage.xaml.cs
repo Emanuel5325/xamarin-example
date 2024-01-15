@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
-using Xamarin.Forms;
 using XamarinExample.ViewModels;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
 
 namespace XamarinExample.Views
 {
