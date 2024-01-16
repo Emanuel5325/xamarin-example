@@ -49,16 +49,46 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Views\Work\**" />
 	  <AndroidResource Remove="XamarinExample\**" />
+	  <Compile Remove="Views\Work\**" />
 	  <Compile Remove="XamarinExample\**" />
+	  <EmbeddedResource Remove="Views\Work\**" />
 	  <EmbeddedResource Remove="XamarinExample\**" />
+	  <MauiCss Remove="Views\Work\**" />
 	  <MauiCss Remove="XamarinExample\**" />
+	  <MauiXaml Remove="Views\Work\**" />
 	  <MauiXaml Remove="XamarinExample\**" />
+	  <None Remove="Views\Work\**" />
 	  <None Remove="XamarinExample\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\ItemDetailPage.xaml.cs">
+	    <DependentUpon>ItemDetailPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\GetWorkPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ItemDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ItemsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NewItemPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

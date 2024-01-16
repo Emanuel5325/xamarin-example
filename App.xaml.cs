@@ -1,4 +1,7 @@
-﻿namespace MauiExample
+﻿using MauiExample.Services;
+using MauiExample.Services.Work;
+
+namespace MauiExample
 {
     public partial class App : Application
     {
@@ -6,6 +9,8 @@
         {
             InitializeComponent();
 
+            DependencyService.Register<MockDataStore>();
+            DependencyService.Register<IWorkApiClient, WorkApiClient>();
             MainPage = new AppShell();
         }
     }
