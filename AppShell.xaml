@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="MauiExample.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:MauiExample.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />-->
+
+
+    <TabBar>
+        <ShellContent x:Name="AboutShellContent" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+        <ShellContent x:Name="ItemsShellContent" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <ShellContent x:Name="GetWorkShellContent" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:GetWorkPage}" />
+    </TabBar>
+
+</Shell>
