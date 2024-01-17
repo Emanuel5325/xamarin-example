@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using MauiExample.Models;
+﻿using MauiExample.Models;
 using MauiExample.Services;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MauiExample.ViewModels
 {
@@ -12,15 +12,15 @@ namespace MauiExample.ViewModels
         private bool isBusy = false;
         public bool IsBusy
         {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
+            get => this.isBusy;
+            set => SetProperty(ref this.isBusy, value);
         }
 
         private string title = string.Empty;
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
+            get => this.title;
+            set => SetProperty(ref this.title, value);
         }
 
         protected bool SetProperty<T>(
@@ -46,7 +46,7 @@ namespace MauiExample.ViewModels
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChangedEventHandler changed = PropertyChanged;
+            var changed = PropertyChanged;
             if (changed == null)
             {
                 return;

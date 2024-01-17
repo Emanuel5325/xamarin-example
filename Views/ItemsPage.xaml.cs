@@ -1,21 +1,22 @@
 using MauiExample.ViewModels;
 
-namespace MauiExample.Views;
-
-public partial class ItemsPage : ContentPage
+namespace MauiExample.Views
 {
-    private readonly ItemsViewModel _viewModel;
-
-    public ItemsPage()
+    public partial class ItemsPage : ContentPage
     {
-        InitializeComponent();
+        private readonly ItemsViewModel _viewModel;
 
-        BindingContext = _viewModel = new ItemsViewModel();
-    }
+        public ItemsPage()
+        {
+            InitializeComponent();
 
-    protected override void OnAppearing()
-    {
-        base.OnAppearing();
-        _viewModel.OnAppearing();
+            this.BindingContext = this._viewModel = new ItemsViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            this._viewModel.OnAppearing();
+        }
     }
 }

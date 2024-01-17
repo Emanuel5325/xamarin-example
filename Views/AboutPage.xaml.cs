@@ -1,9 +1,7 @@
-namespace MauiExample.Views;
-
-public partial class AboutPage : ContentPage
+namespace MauiExample.Views
 {
-    public AboutPage()
+    public partial class AboutPage : ContentPage
     {
-        InitializeComponent();
+        public AboutPage() => InitializeComponent();
     }
 }

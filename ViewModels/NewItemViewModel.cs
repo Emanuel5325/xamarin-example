@@ -9,36 +9,32 @@ namespace MauiExample.ViewModels
 
         public NewItemViewModel()
         {
-            SaveCommand = new Command(OnSave, ValidateSave);
-            CancelCommand = new Command(OnCancel);
-            PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
+            this.SaveCommand = new Command(OnSave, ValidateSave);
+            this.CancelCommand = new Command(OnCancel);
+            PropertyChanged += (_, __) => this.SaveCommand.ChangeCanExecute();
         }
 
-        private bool ValidateSave()
-        {
-            return !string.IsNullOrWhiteSpace(text) && !string.IsNullOrWhiteSpace(description);
-        }
+        private bool ValidateSave() =>
+            !string.IsNullOrWhiteSpace(this.text) && !string.IsNullOrWhiteSpace(this.description);
 
         public string Text
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => this.text;
+            set => SetProperty(ref this.text, value);
         }
 
         public string Description
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => this.description;
+            set => SetProperty(ref this.description, value);
         }
 
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-        private async void OnCancel()
-        {
+        private async void OnCancel() =>
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
-        }
 
         private async void OnSave()
         {
@@ -46,11 +42,11 @@ namespace MauiExample.ViewModels
                 new()
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Text = Text,
-                    Description = Description
+                    Text = this.Text,
+                    Description = this.Description
                 };
 
-            await DataStore.AddItemAsync(newItem);
+            await this.DataStore.AddItemAsync(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

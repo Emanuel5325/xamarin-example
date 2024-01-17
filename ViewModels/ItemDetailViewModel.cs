@@ -12,22 +12,22 @@ namespace MauiExample.ViewModels
 
         public string Text
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => this.text;
+            set => SetProperty(ref this.text, value);
         }
 
         public string Description
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => this.description;
+            set => SetProperty(ref this.description, value);
         }
 
         public string ItemId
         {
-            get => itemId;
+            get => this.itemId;
             set
             {
-                itemId = value;
+                this.itemId = value;
                 LoadItemId(value);
             }
         }
@@ -36,10 +36,10 @@ namespace MauiExample.ViewModels
         {
             try
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
+                var item = await this.DataStore.GetItemAsync(itemId);
+                this.Id = item.Id;
+                this.Text = item.Text;
+                this.Description = item.Description;
             }
             catch (Exception)
             {

@@ -7,7 +7,7 @@ namespace MauiExample.Views
         public ItemDetailPage()
         {
             InitializeComponent();
-            BindingContext = new ItemDetailViewModel();
+            this.BindingContext = new ItemDetailViewModel();
         }
     }
 }
