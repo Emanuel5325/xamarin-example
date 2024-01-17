@@ -1,7 +1,7 @@
-﻿using MauiExample.Models;
-using MauiExample.Services;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using MauiExample.Models;
+using MauiExample.Services;
 
 namespace MauiExample.ViewModels
 {
@@ -23,9 +23,12 @@ namespace MauiExample.ViewModels
             set => SetProperty(ref title, value);
         }
 
-        protected bool SetProperty<T>(ref T backingStore, T value,
+        protected bool SetProperty<T>(
+            ref T backingStore,
+            T value,
             [CallerMemberName] string propertyName = "",
-            Action onChanged = null)
+            Action onChanged = null
+        )
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
             {
@@ -40,6 +43,7 @@ namespace MauiExample.ViewModels
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChangedEventHandler changed = PropertyChanged;

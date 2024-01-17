@@ -1,7 +1,7 @@
-﻿using MauiExample.Models;
-using MauiExample.Views;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using MauiExample.Models;
+using MauiExample.Views;
 
 namespace MauiExample.ViewModels
 {
@@ -59,7 +59,7 @@ namespace MauiExample.ViewModels
             get => _selectedItem;
             set
             {
-                _=SetProperty(ref _selectedItem, value);
+                _ = SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
         }

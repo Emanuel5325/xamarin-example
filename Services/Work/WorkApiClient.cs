@@ -4,17 +4,12 @@ namespace MauiExample.Services.Work
 {
     internal class WorkApiClient : IWorkApiClient
     {
-
         public List<WorkData> All(int page = 0, int pageSize = 100)
         {
             return new List<WorkData>()
             {
-                new() {
-                    Name = "prueba",
-                    Id = 3,
-                }
+                new() { Name = "prueba", Id = 3, }
             };
-
 
             //RestClient client = new("http://10.0.2.2:5501");
 
@@ -41,7 +36,6 @@ namespace MauiExample.Services.Work
 
             //    return null;
             //}
-
         }
     }
 }

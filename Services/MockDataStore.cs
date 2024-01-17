@@ -10,12 +10,42 @@ namespace MauiExample.Services
         {
             items = new List<Item>()
             {
-                new() { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new() { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new() { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new() { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new() { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new() { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." }
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = "First item",
+                    Description = "This is an item description."
+                },
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = "Second item",
+                    Description = "This is an item description."
+                },
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = "Third item",
+                    Description = "This is an item description."
+                },
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = "Fourth item",
+                    Description = "This is an item description."
+                },
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = "Fifth item",
+                    Description = "This is an item description."
+                },
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = "Sixth item",
+                    Description = "This is an item description."
+                }
             };
         }
 
@@ -29,7 +59,7 @@ namespace MauiExample.Services
         public async Task<bool> UpdateItemAsync(Item item)
         {
             Item oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            _=items.Remove(oldItem);
+            _ = items.Remove(oldItem);
             items.Add(item);
 
             return await Task.FromResult(true);
@@ -38,7 +68,7 @@ namespace MauiExample.Services
         public async Task<bool> DeleteItemAsync(string id)
         {
             Item oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            _=items.Remove(oldItem);
+            _ = items.Remove(oldItem);
 
             return await Task.FromResult(true);
         }

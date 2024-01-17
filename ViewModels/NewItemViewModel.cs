@@ -11,14 +11,12 @@ namespace MauiExample.ViewModels
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+            PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
         }
 
         private bool ValidateSave()
         {
-            return !string.IsNullOrWhiteSpace(text)
-                && !string.IsNullOrWhiteSpace(description);
+            return !string.IsNullOrWhiteSpace(text) && !string.IsNullOrWhiteSpace(description);
         }
 
         public string Text
@@ -44,12 +42,13 @@ namespace MauiExample.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
-            };
+            Item newItem =
+                new()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Text = Text,
+                    Description = Description
+                };
 
             await DataStore.AddItemAsync(newItem);
 
