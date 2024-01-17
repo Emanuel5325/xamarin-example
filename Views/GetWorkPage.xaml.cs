@@ -4,7 +4,6 @@ using MauiExample.ViewModels;
 
 namespace MauiExample.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GetWorkPage : ContentPage
     {
         private IWorkApiClient _workService => DependencyService.Get<IWorkApiClient>();
