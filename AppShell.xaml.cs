@@ -11,9 +11,9 @@ namespace MauiExample
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
 
-            AboutShellContent.Title = new AboutViewModel().Title;
-            ItemsShellContent.Title = new ItemsViewModel().Title;
-            GetWorkShellContent.Title = new GetWorkViewModel().Title;
+            this.AboutShellContent.Title = new AboutViewModel().Title;
+            this.ItemsShellContent.Title = new ItemsViewModel().Title;
+            this.GetWorkShellContent.Title = new GetWorkViewModel().Title;
         }
     }
 }

@@ -28,7 +28,7 @@ namespace MauiExample.Views
             ReloadLabels(entry);
         }
 
-        private void OnSearchButtonClicked(object sender, System.EventArgs e) => ReloadLabels(WorksQuantity);
+        private void OnSearchButtonClicked(object sender, System.EventArgs e) => ReloadLabels(this.WorksQuantity);
 
         private void ReloadLabels(Entry entry)
         {
@@ -41,8 +41,8 @@ namespace MauiExample.Views
 
             if (int.TryParse(entryText, out var quantity))
             {
-                WorkName.Text = "error de casteo de número";
-                WorkId.Text = "error de casteo de número";
+                this.WorkName.Text = "error de casteo de número";
+                this.WorkId.Text = "error de casteo de número";
             }
 
             const int pageSize = 10;
@@ -52,12 +52,12 @@ namespace MauiExample.Views
 
             if (work == null)
             {
-                WorkName.Text = "error de servicio";
-                WorkId.Text = "error de servicio";
+                this.WorkName.Text = "error de servicio";
+                this.WorkId.Text = "error de servicio";
             }
 
-            WorkName.Text = work.Name;
-            WorkId.Text = work.Id.ToString();
+            this.WorkName.Text = work.Name;
+            this.WorkId.Text = work.Id.ToString();
         }
     }
 }

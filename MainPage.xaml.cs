@@ -10,9 +10,9 @@
         {
             this.count++;
 
-            CounterBtn.Text = this.count == 1 ? $"Clicked {this.count} time" : $"Clicked {this.count} times";
+            this.CounterBtn.Text = this.count == 1 ? $"Clicked {this.count} time" : $"Clicked {this.count} times";
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            SemanticScreenReader.Announce(this.CounterBtn.Text);
         }
     }
 }
