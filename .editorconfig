@@ -1,13 +1,5 @@
 root = true
 
-[**/Migrations/**]
-exclude_from_formatting = true
-generated_code = true
-
-[**/migrations/**]
-exclude_from_formatting = true
-generated_code = true
-
 [*.{cs,vb}]
 csharp_using_directive_placement = outside_namespace:error
 csharp_prefer_simple_using_statement = true:error
