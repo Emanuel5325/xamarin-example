@@ -16,26 +16,26 @@ namespace MauiExample.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            this.Title = "Browse";
+            this.Items = new ObservableCollection<Item>();
+            this.LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            ItemTapped = new Command<Item>(OnItemSelected);
+            this.ItemTapped = new Command<Item>(OnItemSelected);
 
-            AddItemCommand = new Command(OnAddItem);
+            this.AddItemCommand = new Command(OnAddItem);
         }
 
         private async Task ExecuteLoadItemsCommand()
         {
-            IsBusy = true;
+            this.IsBusy = true;
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
+                this.Items.Clear();
+                var items = await this.DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    this.Items.Add(item);
                 }
             }
             catch (Exception ex)
@@ -44,30 +44,27 @@ namespace MauiExample.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                this.IsBusy = false;
             }
         }
 
         public void OnAppearing()
         {
-            IsBusy = true;
-            SelectedItem = null;
+            this.IsBusy = true;
+            this.SelectedItem = null;
         }
 
         public Item SelectedItem
         {
-            get => _selectedItem;
+            get => this._selectedItem;
             set
             {
-                _=SetProperty(ref _selectedItem, value);
+                _ = SetProperty(ref this._selectedItem, value);
                 OnItemSelected(value);
             }
         }
 
-        private async void OnAddItem(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
-        }
+        private async void OnAddItem(object obj) => await Shell.Current.GoToAsync(nameof(NewItemPage));
 
         private async void OnItemSelected(Item item)
         {

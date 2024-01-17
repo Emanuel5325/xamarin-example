@@ -7,7 +7,7 @@
              xmlns:model="clr-namespace:MauiExample.Models"  
              x:Name="BrowseItemsPage" >
 
-             
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
     </ContentPage.ToolbarItems>

@@ -6,8 +6,8 @@ namespace MauiExample.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
-            OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
+            this.Title = "About";
+            this.OpenWebCommand = new Command(async () => await Browser.OpenAsync("https://aka.ms/xamarin-quickstart"));
         }
 
         public ICommand OpenWebCommand { get; }

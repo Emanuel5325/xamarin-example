@@ -11,7 +11,7 @@ namespace MauiExample
 
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<IWorkApiClient, WorkApiClient>();
-            MainPage = new AppShell();
+            this.MainPage = new AppShell();
         }
     }
 }

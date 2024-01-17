@@ -2,9 +2,6 @@
 {
     public class GetWorkViewModel : BaseViewModel
     {
-        public GetWorkViewModel()
-        {
-            Title = "Datos de Obra";
-        }
+        public GetWorkViewModel() => this.Title = "Datos de Obra";
     }
 }
