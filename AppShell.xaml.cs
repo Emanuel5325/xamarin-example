@@ -14,6 +14,7 @@ namespace MauiExample
             this.AboutShellContent.Title = new AboutViewModel().Title;
             this.ItemsShellContent.Title = new ItemsViewModel().Title;
             this.GetWorkShellContent.Title = new GetWorkViewModel().Title;
+            this.MapShellContent.Title = new MapViewModel().Title;
         }
     }
 }
