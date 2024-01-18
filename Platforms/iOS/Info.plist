@@ -13,6 +13,10 @@
 	<array>
 		<string>arm64</string>
 	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location will be tracked when the app is in use</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location will be tracked when the app is in background</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
