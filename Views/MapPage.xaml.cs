@@ -1,4 +1,5 @@
 using MauiExample.ViewModels;
+using Map = Microsoft.Maui.Controls.Maps.Map;
 
 namespace MauiExample.Views
 {
@@ -9,6 +10,9 @@ namespace MauiExample.Views
             InitializeComponent();
 
             this.BindingContext = new MapViewModel();
+
+            var map = new Map();
+            this.Content = map;
         }
     }
 }

@@ -5,5 +5,4 @@
              xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
              xmlns:vm="clr-namespace:MauiExample.ViewModels"
              Title="{Binding Title}">
-        <maps:Map x:Name="map" />
 </ContentPage>
