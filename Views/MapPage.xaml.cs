@@ -1,9 +1,8 @@
 using MauiExample.ViewModels;
-using System.ComponentModel;
 
 namespace MauiExample.Views
 {
-    public partial class MapPage : INotifyPropertyChanged
+    public partial class MapPage : ContentPage
     {
         public MapPage()
         {
