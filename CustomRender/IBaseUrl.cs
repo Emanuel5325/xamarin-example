@@ -1,4 +1,4 @@
-﻿namespace MauiExample.CustomReader
+﻿namespace MauiExample.CustomRender
 {
     public interface IBaseUrl
     {

@@ -2,7 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiExample.Views.MapPage"
-             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:map="clr-namespace:MauiExample.CustomRender"
              xmlns:vm="clr-namespace:MauiExample.ViewModels"
              Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <map:IWebViewCustom x:Name="webView" 
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand" 
+                                HeightRequest="100"/>
+            <StackLayout>
+                <Button x:Name="Send" 
+                        Text="Mostrar" 
+                        Clicked="Send_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
