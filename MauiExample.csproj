@@ -64,10 +64,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiCss Remove="Resources\Raw\leaflet.css" />
+	  <MauiImage Remove="Resources\Images\layers-2x.png" />
+	  <MauiImage Remove="Resources\Images\layers.png" />
+	  <MauiImage Remove="Resources\Images\marker-icon-2x.png" />
+	  <MauiImage Remove="Resources\Images\marker-icon.png" />
+	  <MauiImage Remove="Resources\Images\marker-shadow.png" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\layers-2x.png" />
+	  <None Remove="Resources\Images\layers.png" />
+	  <None Remove="Resources\Images\marker-icon-2x.png" />
+	  <None Remove="Resources\Images\marker-icon.png" />
+	  <None Remove="Resources\Images\marker-shadow.png" />
 	  <None Remove="Resources\Raw\index.html" />
 	</ItemGroup>
 
@@ -100,6 +109,10 @@
 	  <MauiXaml Update="Views\NewItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Raw\Images\" />
 	</ItemGroup>
 
 </Project>
