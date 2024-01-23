@@ -64,15 +64,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Remove="Resources\Raw\index.html" />
+	  <MauiCss Remove="Resources\Raw\leaflet.css" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <None Remove="Resources\Raw\index.html" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Raw\index.html" />
 	</ItemGroup>
 
 	<ItemGroup>
