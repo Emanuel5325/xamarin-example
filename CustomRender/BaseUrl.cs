@@ -2,6 +2,7 @@
 {
     public partial class BaseUrl
     {
-        public partial string Get() => "file:///android_asset/";
+        public partial string Get();
+
     }
 }

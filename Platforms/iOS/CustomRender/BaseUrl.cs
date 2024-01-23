@@ -1,12 +1,10 @@
 ﻿using Foundation;
-using MauiExample.CustomRender;
 
-[assembly: Dependency(typeof(MauiExample.Platforms.iOS.CustomRender.BaseUrl))]
-namespace MauiExample.Platforms.iOS.CustomRender
+namespace MauiExample.CustomRender
 {
-    public class BaseUrl : IBaseUrl
+    public partial class BaseUrl
     {
-        public string Get() => NSBundle.MainBundle.BundlePath;
+        public partial string Get() => NSBundle.MainBundle.BundlePath;
 
     }
 }

@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:MauiExample.ViewModels"
              Title="{Binding Title}">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10" Spacing="10">
             <map:IWebViewCustom x:Name="webView" 
                                 HorizontalOptions="FillAndExpand" 
                                 VerticalOptions="FillAndExpand" 

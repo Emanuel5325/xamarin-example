@@ -64,21 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiImage Remove="Resources\Images\layers-2x.png" />
-	  <MauiImage Remove="Resources\Images\layers.png" />
-	  <MauiImage Remove="Resources\Images\marker-icon-2x.png" />
-	  <MauiImage Remove="Resources\Images\marker-icon.png" />
-	  <MauiImage Remove="Resources\Images\marker-shadow.png" />
+	  <MauiCss Remove="Resources\Raw\CSS\leaflet.css" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="Resources\Images\layers-2x.png" />
-	  <None Remove="Resources\Images\layers.png" />
-	  <None Remove="Resources\Images\marker-icon-2x.png" />
-	  <None Remove="Resources\Images\marker-icon.png" />
-	  <None Remove="Resources\Images\marker-shadow.png" />
-	  <None Remove="Resources\Raw\index.html" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
@@ -109,10 +97,6 @@
 	  <MauiXaml Update="Views\NewItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Resources\Raw\Images\" />
 	</ItemGroup>
 
 </Project>
