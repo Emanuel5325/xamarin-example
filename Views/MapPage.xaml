@@ -9,8 +9,7 @@
         <StackLayout Padding="10" Spacing="10">
             <map:IWebViewCustom x:Name="webView" 
                                 HorizontalOptions="FillAndExpand" 
-                                VerticalOptions="FillAndExpand" 
-                                HeightRequest="100"/>
+                                VerticalOptions="FillAndExpand" />
             <StackLayout>
                 <Button x:Name="Send" 
                         Text="Mostrar" 
