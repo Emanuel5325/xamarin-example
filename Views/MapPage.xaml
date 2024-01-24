@@ -13,7 +13,7 @@
             <StackLayout>
                 <Button x:Name="Send" 
                         Text="{Binding ButtonText}" 
-                        Clicked="Send_Clicked"/>
+                        Clicked="PlayPauseButtonAction"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

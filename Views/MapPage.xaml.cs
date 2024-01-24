@@ -46,7 +46,7 @@ namespace MauiExample.Views
 
         }
 
-        private void Send_Clicked(object sender, EventArgs e) => this._viewModel.ChangeButtonText();
+        private void PlayPauseButtonAction(object sender, EventArgs e) => this._viewModel.ChangeButtonText();
 
         public void SetItemMuestra()
         {
