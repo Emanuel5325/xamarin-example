@@ -10,6 +10,8 @@
             this.Title = "Mapa";
             this.IsPaused = true;
             SetButtonText();
+
+            this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
         }
 
 
@@ -28,7 +30,14 @@
             this.IsPaused = !this.IsPaused;
             SetButtonText();
         }
+        public Command PlayPauseCommand { get; }
+
+
+        private void OnPlayPause() => ChangeButtonText();
 
         private string SetButtonText() => this.ButtonText = this.IsPaused ? PLAY : PAUSE;
+
+        private bool ValidatePlayPause() => true;
+
     }
 }

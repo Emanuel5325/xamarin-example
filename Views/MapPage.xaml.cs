@@ -46,8 +46,6 @@ namespace MauiExample.Views
 
         }
 
-        private void PlayPauseButtonAction(object sender, EventArgs e) => this._viewModel.ChangeButtonText();
-
         public void SetItemMuestra()
         {
             newMarker("-2.14003", "-79.9312967", "Soy un marker");
