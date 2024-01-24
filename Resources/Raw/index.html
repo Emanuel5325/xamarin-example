@@ -45,12 +45,16 @@
             mbAttr2 = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
 
         var OSM = L.tileLayer(mbUrl, { id: 'OSM', attribution: mbAttr }),
-            Sat = L.tileLayer(mbUrl2, { id: 'Sat', attribution: mbAttr2 });
+            //Sat = L.tileLayer(mbUrl2, { id: 'Sat', attribution: mbAttr2 });
+            Sat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            });
+
 
         var baseLayers = {
             "OSM": OSM,
             "Satellite": Sat
-
         };
 
         var markerGroup = new L.LayerGroup();
