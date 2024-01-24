@@ -48,13 +48,7 @@ namespace MauiExample.Views
 
         }
 
-
-
-        // emanuel5325 - agregar la lógica del main page de la prueba de leaflet
-
-
         private void Send_Clicked(object sender, EventArgs e) => SetItemMuestra();
-
 
         public void SetItemMuestra()
         {
