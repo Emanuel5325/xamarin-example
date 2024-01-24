@@ -58,15 +58,14 @@ namespace MauiExample.Views
 
             CentrarMapa("-2.14003", "-79.9312967");
         }
-        public void newMarker(string lat, string lon, string texto = "")
+        public void newMarker(string latitude, string longitude, string markerLabel = "")
         {
-            if (string.IsNullOrEmpty(lat) || string.IsNullOrEmpty(lon))
+            if (string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
             {
-                Console.Write("Verifique los campos lat lon");
                 return;
             }
-
-            this.webView.Eval(string.Format("newMarker({0}, {1}, {2})", "\"" + lat + "\"", "\"" + lon + "\"", "\"" + texto + "\""));
+            //emanuel5325 - quitar todos los string.format
+            this.webView.Eval($@"newMarker(""{latitude}"", ""{longitude}"", ""{markerLabel}"")");
         }
         public void newCircle(string lat, string lon, string color = "blue", string fillcolor = "#07", double fillopacity = 0.5, int radius = 500)
         {

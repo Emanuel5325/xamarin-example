@@ -69,9 +69,9 @@
 
         L.control.layers(baseLayers).addTo(map);
 
-        //crea un nuevo marcador
-        function newMarker(lat, lon, texto) {
-            var marker = L.marker([lat.toString(), lon.toString()]).bindPopup(texto);
+        function newMarker(latitude, longitude, markerLabel) {
+            var marker = L.marker([latitude.toString(), longitude.toString()])
+                .bindPopup(markerLabel);
             markerGroup.addLayer(marker);
         }
 
