@@ -64,7 +64,6 @@ namespace MauiExample.Views
             {
                 return;
             }
-            //emanuel5325 - quitar todos los string.format
             this.webView.Eval($@"newMarker(""{latitude}"", ""{longitude}"", ""{markerLabel}"")");
         }
         public void newCircle(string latitude, string longitude, string color = "blue", string fillcolor = "#07",
