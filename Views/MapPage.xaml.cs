@@ -56,7 +56,7 @@ namespace MauiExample.Views
 
             Show();
 
-            CentrarMapa("-2.14003", "-79.9312967");
+            CenterMap("-2.14003", "-79.9312967");
         }
         public void newMarker(string latitude, string longitude, string markerLabel = "")
         {
@@ -67,14 +67,14 @@ namespace MauiExample.Views
             //emanuel5325 - quitar todos los string.format
             this.webView.Eval($@"newMarker(""{latitude}"", ""{longitude}"", ""{markerLabel}"")");
         }
-        public void newCircle(string lat, string lon, string color = "blue", string fillcolor = "#07", double fillopacity = 0.5, int radius = 500)
+        public void newCircle(string latitude, string longitude, string color = "blue", string fillcolor = "#07",
+            double fillopacity = 0.5, int radius = 500)
         {
-            if (string.IsNullOrEmpty(lat) || string.IsNullOrEmpty(lon))
+            if (string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
             {
-                Console.Write("Verifique los campos lat lon");
                 return;
             }
-            this.webView.Eval(string.Format("newCircle({0},{1},{2},{3},{4},{5})", "\"" + lat + "\"", "\"" + lon + "\"", "\"" + color + "\"", "\"" + fillcolor + "\"", "\"" + fillopacity + "\"", "\"" + radius + "\""));
+            this.webView.Eval($@"newCircle(""{latitude}"",""{longitude}"",""{color}"",""{fillcolor}"",""{fillopacity}"",""{radius}"")");
         }
         public void newLine(string latFrom, string lonFrom, string latTo, string lonTo, string color = "blue")
         {
@@ -87,14 +87,13 @@ namespace MauiExample.Views
         }
         public void Show() => this.webView.Eval(@"show()");
 
-        public void CentrarMapa(string lat, string lon)
+        public void CenterMap(string latitude, string longitude)
         {
-            if (string.IsNullOrEmpty(lat) || string.IsNullOrEmpty(lon))
+            if (string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
             {
-                Console.Write("Verifique los campos lat lon");
                 return;
             }
-            this.webView.Eval(string.Format("centerMap({0},{1})", "\"" + lat + "\"", "\"" + lon + "\""));
+            this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"")");
         }
     }
 }

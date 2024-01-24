@@ -85,20 +85,17 @@
             markerGroup.addLayer(Line);
         }
 
-        //crear circulo
-        function newCircle(lat, lon, color, fillColor, fillOpacity, radius) {
-            var circle = L.circle([lat, lon], { color: color, fillColor: fillColor, fillOpacity: fillOpacity, radius: radius });
+        function newCircle(latitude, longitude, color, fillColor, fillOpacity, radius) {
+            var circle = L.circle([latitude, longitude], { color: color, fillColor: fillColor, fillOpacity: fillOpacity, radius: radius });
             markerGroup.addLayer(circle);
         }
 
-        //muestra los grupos en el mapa
         function show() {
             markerGroup.addTo(map);
         }
 
-        //centra el mapa en un punto especifico
-        function centerMap(lat, lon) {
-            map.panTo(new L.LatLng(lat, lon));
+        function centerMap(latitude, longitude) {
+            map.panTo(new L.LatLng(latitude, longitude));
         }
 
         //elimina los grupos del mapa
