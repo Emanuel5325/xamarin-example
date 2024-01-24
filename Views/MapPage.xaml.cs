@@ -5,11 +5,13 @@ namespace MauiExample.Views
 {
     public partial class MapPage : ContentPage
     {
+        private readonly MapViewModel _viewModel;
+
         public MapPage()
         {
             InitializeComponent();
 
-            this.BindingContext = new MapViewModel();
+            this.BindingContext = this._viewModel = new MapViewModel();
             _ = LoadMapAsync();
 
         }
@@ -44,7 +46,7 @@ namespace MauiExample.Views
 
         }
 
-        private void Send_Clicked(object sender, EventArgs e) => SetItemMuestra();
+        private void Send_Clicked(object sender, EventArgs e) => this._viewModel.ChangeButtonText();
 
         public void SetItemMuestra()
         {
