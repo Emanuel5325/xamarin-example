@@ -1,5 +1,6 @@
 using MauiExample.CustomRender;
 using MauiExample.ViewModels;
+using System.Collections.Specialized;
 
 namespace MauiExample.Views
 {
@@ -14,6 +15,7 @@ namespace MauiExample.Views
             this.BindingContext = this._viewModel = new MapViewModel();
             _ = LoadMapAsync();
 
+            this._viewModel.TrackedRoute.CollectionChanged += ReloadMap;
         }
 
         public async Task LoadMapAsync()
@@ -95,6 +97,19 @@ namespace MauiExample.Views
                 return;
             }
             this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"")");
+        }
+
+        private void ReloadMap(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (Location item in e.NewItems)
+                {
+                    Console.WriteLine($"Cam bio en la lista de locations, se agregó: {item.Latitude}, {item.Longitude}");
+                }
+
+                // emanuel5325 - acá recargar todos los elementos del mapa
+            }
         }
     }
 }

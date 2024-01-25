@@ -1,5 +1,4 @@
 ﻿using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 
 namespace MauiExample.ViewModels
 {
@@ -16,9 +15,6 @@ namespace MauiExample.ViewModels
 
             this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
             PropertyChanged += (_, __) => this.PlayPauseCommand.ChangeCanExecute();
-
-            this.TrackedRoute = [];
-            this.TrackedRoute.CollectionChanged += ReloadMap;
         }
 
 
@@ -128,19 +124,6 @@ namespace MauiExample.ViewModels
         {
             this.TrackedRoute.Add(e.Location);
             Console.WriteLine($"cambio de posición a: {e.Location.Latitude}, {e.Location.Longitude}");
-        }
-
-        private void ReloadMap(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action == NotifyCollectionChangedAction.Add)
-            {
-                foreach (var item in (ICollection<Location>)e.NewItems)
-                {
-                    Console.WriteLine($"Cambio en la lista de locations, se agregó: {item.Latitude}, {item.Longitude}");
-                }
-
-                // emanuel5325 - acá recargar todos los elementos del mapa
-            }
         }
     }
 }
