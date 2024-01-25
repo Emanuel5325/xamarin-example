@@ -15,6 +15,9 @@ namespace MauiExample.ViewModels
 
             this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
             PropertyChanged += (_, __) => this.PlayPauseCommand.ChangeCanExecute();
+
+
+            // emanuel5325 - agregar en el on add de la lista una action para que actualize el mapa
         }
 
 
@@ -39,7 +42,7 @@ namespace MauiExample.ViewModels
         }
         public Command PlayPauseCommand { get; }
 
-        public ObservableCollection<Location> TrackedRoute = new();
+        public ObservableCollection<Location> TrackedRoute = [];
 
 
         private void OnPlayPause() => ChangeRecordingState();
@@ -57,50 +60,73 @@ namespace MauiExample.ViewModels
             }
             else
             {
-                TryStartListeningGeolocation();
+                _ = TryStartListeningGeolocation();
             }
         }
 
         private void TryStopListeningGeolocation()
         {
             //emanuel5325 - tratar de apagar el listener
+
+            OnStopListening();
+
+
             var a = 0;
             a++;
             Console.WriteLine(a);
         }
 
-        private void TryStartListeningGeolocation()
+        private async Task TryStartListeningGeolocation()
         {
             // emanuel5325 - tratar de iniciar el listener con un span de cinco segundos y que este agregue cosas
             // al listado de localizaciones
+            await OnStartListening();
 
             var a = 22;
             a++;
             Console.WriteLine(a);
         }
 
-        //async void OnStartListening()
-        //{
-        //    try
-        //    {
-        //        Geolocation.LocationChanged += Geolocation_LocationChanged;
-        //        var request = new GeolocationListeningRequest((GeolocationAccuracy)Accuracy);
-        //        var success = await Geolocation.StartListeningForegroundAsync(request);
+        private async Task OnStartListening()
+        {
+            try
+            {
+                Geolocation.LocationChanged += Geolocation_LocationChanged;
+                const int REFRESH_TIME = 5;
+                var request = new GeolocationListeningRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(REFRESH_TIME));
+                var success = await Geolocation.StartListeningForegroundAsync(request);
 
-        //        string status = success
-        //            ? "Started listening for foreground location updates"
-        //            : "Couldn't start listening";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        // Unable to start listening for location changes
-        //    }
-        //}
+                Console.WriteLine(success
+                    ? "Started listening for foreground location updates"
+                    : "Couldn't start listening");
+            }
+            catch (Exception)
+            {
+                // emanuel5325 - tal vez acá se debería poner en false el flag de ispaused
+                // Unable to start listening for location changes
+            }
+        }
 
-        //void Geolocation_LocationChanged(object sender, GeolocationLocationChangedEventArgs e)
-        //{
-        //    // Process e.Location to get the new location
-        //}
+        private void OnStopListening()
+        {
+            try
+            {
+                Geolocation.LocationChanged -= Geolocation_LocationChanged;
+                Geolocation.StopListeningForeground();
+                Console.WriteLine("Stopped listening for foreground location updates");
+            }
+            catch (Exception)
+            {
+                // emanuel5325 - tal vez acá se debería poner en false el flag de ispaused
+                // Unable to stop listening for location changes
+            }
+        }
+
+        private void Geolocation_LocationChanged(object sender, GeolocationLocationChangedEventArgs e)
+        {
+            this.TrackedRoute.Add(e.Location);
+            Console.WriteLine($"cambio de posición a: {e.Location.Longitude} - {e.Location.Latitude}");
+        }
 
     }
 }
