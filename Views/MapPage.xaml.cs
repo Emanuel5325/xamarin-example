@@ -103,12 +103,28 @@ namespace MauiExample.Views
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
-                foreach (Location item in e.NewItems)
-                {
-                    Console.WriteLine($"Cam bio en la lista de locations, se agregó: {item.Latitude}, {item.Longitude}");
-                }
 
-                // emanuel5325 - acá recargar todos los elementos del mapa
+                if (this._viewModel.TrackedRoute.Count > 1)
+                {
+                    var firstNewLocation = e.NewItems[0] as Location;
+                    var startIndex = this._viewModel.TrackedRoute.IndexOf(firstNewLocation);
+
+                    for (var i = startIndex; i < this._viewModel.TrackedRoute.Count; i++)
+                    {
+                        var locationFrom = this._viewModel.TrackedRoute[i - 1];
+                        var locationTo = this._viewModel.TrackedRoute[i];
+
+                        newLine(locationFrom.Latitude.ToString(), locationFrom.Longitude.ToString(),
+                            locationTo.Latitude.ToString(), locationTo.Longitude.ToString(),
+                            "blue");
+                    }
+                }
+                else if (this._viewModel.TrackedRoute.Any())
+                {
+                    var firstLocation = this._viewModel.TrackedRoute.First();
+                    newMarker(firstLocation.Latitude.ToString(), firstLocation.Longitude.ToString(), "Comienzo");
+                }
+                // emanuel5325 - debería recentrar el mapa
             }
         }
     }
