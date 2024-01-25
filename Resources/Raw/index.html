@@ -39,22 +39,18 @@
 
     <script type="text/javascript">
 
-        var mbAttr = '&copy;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-            mbUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            mbUrl2 = 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-            mbAttr2 = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
+        var mapAttribution = '&copy;<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+        var mapUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-        var OSM = L.tileLayer(mbUrl, { id: 'OSM', attribution: mbAttr }),
-            //Sat = L.tileLayer(mbUrl2, { id: 'Sat', attribution: mbAttr2 });
-            Sat = L.tileLayer('https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-                maxZoom: 20,
-                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
-            });
+        var satelliteUrl = 'https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}';
+
+        var mapLayer = L.tileLayer(mapUrl, { id: 'Mapa', attribution: mapAttribution });
+        var satelliteLayer = L.tileLayer(satelliteUrl, { maxZoom: 20, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'] });
 
 
         var baseLayers = {
-            "OSM": OSM,
-            "Satellite": Sat
+            "Mapa": mapLayer,
+            "Satelite": satelliteLayer,
         };
 
         var markerGroup = new L.LayerGroup();
@@ -62,7 +58,7 @@
         var map = L.map('map', {
             center: [-37.020944, -65.404333],
             zoom: 4,
-            layers: [OSM]
+            layers: [mapLayer]
         });
 
         map.addLayer(markerGroup);
@@ -75,18 +71,31 @@
             markerGroup.addLayer(marker);
         }
 
-        //crear linea
-        function newLine(latFrom, lonFrom, latTo, lonTo, color) {
-            var From = [latFrom.toString(), lonFrom.toString()];
-            var To = [latTo.toString(), lonTo.toString()];
-            var FromTo = [From, To];
+        function newLine(latitudeFrom, longitudeFrom, latitudeTo, longitudeTo, color) {
+            var from = [latitudeFrom.toString(), longitudeFrom.toString()];
+            var to = [latitudeTo.toString(), longitudeTo.toString()];
+            var fromTo = [from, to];
 
-            var Line = new L.polyline(FromTo, { color: color, weight: 3, opacity: 0.5, smoothFactor: 1, noClip: false });
-            markerGroup.addLayer(Line);
+            var line = new L.polyline(fromTo,
+                {
+                    color: color,
+                    weight: 3,
+                    opacity: 0.5,
+                    smoothFactor: 1,
+                    noClip: false,
+                });
+            markerGroup.addLayer(line);
         }
 
         function newCircle(latitude, longitude, color, fillColor, fillOpacity, radius) {
-            var circle = L.circle([latitude, longitude], { color: color, fillColor: fillColor, fillOpacity: fillOpacity, radius: radius });
+            var circle = L.circle([latitude, longitude],
+                {
+                    color: color,
+                    fillColor: fillColor,
+                    fillOpacity: fillOpacity,
+                    radius: radius,
+                }
+            );
             markerGroup.addLayer(circle);
         }
 
@@ -98,8 +107,7 @@
             map.panTo(new L.LatLng(latitude, longitude));
         }
 
-        //elimina los grupos del mapa
-        function delMarker() {
+        function deleteMarkers() {
             markerGroup.clearLayers().addTo(map);
         }
 

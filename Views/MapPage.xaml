@@ -12,8 +12,8 @@
                                 VerticalOptions="FillAndExpand" />
             <StackLayout>
                 <Button x:Name="Send" 
-                        Text="Mostrar" 
-                        Clicked="Send_Clicked"/>
+                        Text="{Binding ButtonText}" 
+                        Command="{Binding PlayPauseCommand}"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

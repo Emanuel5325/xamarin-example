@@ -5,11 +5,13 @@ namespace MauiExample.Views
 {
     public partial class MapPage : ContentPage
     {
+        private readonly MapViewModel _viewModel;
+
         public MapPage()
         {
             InitializeComponent();
 
-            this.BindingContext = new MapViewModel();
+            this.BindingContext = this._viewModel = new MapViewModel();
             _ = LoadMapAsync();
 
         }
@@ -44,8 +46,6 @@ namespace MauiExample.Views
 
         }
 
-        private void Send_Clicked(object sender, EventArgs e) => SetItemMuestra();
-
         public void SetItemMuestra()
         {
             newMarker("-2.14003", "-79.9312967", "Soy un marker");
@@ -75,14 +75,16 @@ namespace MauiExample.Views
             }
             this.webView.Eval($@"newCircle(""{latitude}"",""{longitude}"",""{color}"",""{fillcolor}"",""{fillopacity}"",""{radius}"")");
         }
-        public void newLine(string latFrom, string lonFrom, string latTo, string lonTo, string color = "blue")
+        public void newLine(string latitudeFrom, string longitudeFrom, string latitudeTo, string longitudeTo, string color = "blue")
         {
-            if (string.IsNullOrEmpty(latFrom) || string.IsNullOrEmpty(lonFrom) || string.IsNullOrEmpty(latTo) || string.IsNullOrEmpty(lonTo))
+            if (string.IsNullOrEmpty(latitudeFrom)
+                || string.IsNullOrEmpty(longitudeFrom)
+                || string.IsNullOrEmpty(latitudeTo)
+                || string.IsNullOrEmpty(longitudeTo))
             {
-                Console.Write("Verifique los campos lat lon");
                 return;
             }
-            this.webView.Eval($@"newLine(""{latFrom}"",""{lonFrom}"",""{latTo}"",""{lonTo}"",""{color}"")");
+            this.webView.Eval($@"newLine(""{latitudeFrom}"",""{longitudeFrom}"",""{latitudeTo}"",""{longitudeTo}"",""{color}"")");
         }
         public void Show() => this.webView.Eval(@"show()");
 
