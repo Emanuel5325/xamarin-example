@@ -25,7 +25,7 @@
 
         public bool IsPaused { get; set; }
 
-        public void ChangeButtonText()
+        public void ChangeRecordingState()
         {
             this.IsPaused = !this.IsPaused;
             SetButtonText();
@@ -33,10 +33,11 @@
         public Command PlayPauseCommand { get; }
 
 
-        private void OnPlayPause() => ChangeButtonText();
+        private void OnPlayPause() => ChangeRecordingState();
 
         private string SetButtonText() => this.ButtonText = this.IsPaused ? PLAY : PAUSE;
 
+        // emanuel5325 - agregar una validación si corresponde
         private bool ValidatePlayPause() => true;
 
     }
