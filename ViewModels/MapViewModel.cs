@@ -79,5 +79,28 @@ namespace MauiExample.ViewModels
             Console.WriteLine(a);
         }
 
+        //async void OnStartListening()
+        //{
+        //    try
+        //    {
+        //        Geolocation.LocationChanged += Geolocation_LocationChanged;
+        //        var request = new GeolocationListeningRequest((GeolocationAccuracy)Accuracy);
+        //        var success = await Geolocation.StartListeningForegroundAsync(request);
+
+        //        string status = success
+        //            ? "Started listening for foreground location updates"
+        //            : "Couldn't start listening";
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Unable to start listening for location changes
+        //    }
+        //}
+
+        //void Geolocation_LocationChanged(object sender, GeolocationLocationChangedEventArgs e)
+        //{
+        //    // Process e.Location to get the new location
+        //}
+
     }
 }
