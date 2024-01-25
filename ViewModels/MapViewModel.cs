@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace MauiExample.ViewModels
 {
@@ -16,8 +17,8 @@ namespace MauiExample.ViewModels
             this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
             PropertyChanged += (_, __) => this.PlayPauseCommand.ChangeCanExecute();
 
-
-            // emanuel5325 - agregar en el on add de la lista una action para que actualize el mapa
+            this.TrackedRoute = [];
+            this.TrackedRoute.CollectionChanged += ReloadMap;
         }
 
 
@@ -40,6 +41,7 @@ namespace MauiExample.ViewModels
             this.IsPaused = !this.IsPaused;
             SetButtonText();
         }
+
         public Command PlayPauseCommand { get; }
 
         public ObservableCollection<Location> TrackedRoute = [];
@@ -125,8 +127,20 @@ namespace MauiExample.ViewModels
         private void Geolocation_LocationChanged(object sender, GeolocationLocationChangedEventArgs e)
         {
             this.TrackedRoute.Add(e.Location);
-            Console.WriteLine($"cambio de posición a: {e.Location.Longitude} - {e.Location.Latitude}");
+            Console.WriteLine($"cambio de posición a: {e.Location.Latitude}, {e.Location.Longitude}");
         }
 
+        private void ReloadMap(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (var item in (ICollection<Location>)e.NewItems)
+                {
+                    Console.WriteLine($"Cambio en la lista de locations, se agregó: {item.Latitude}, {item.Longitude}");
+                }
+
+                // emanuel5325 - acá recargar todos los elementos del mapa
+            }
+        }
     }
 }
