@@ -1,4 +1,6 @@
-﻿namespace MauiExample.ViewModels
+﻿using System.Collections.ObjectModel;
+
+namespace MauiExample.ViewModels
 {
     public class MapViewModel : BaseViewModel
     {
@@ -12,8 +14,8 @@
             SetButtonText();
 
             this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
+            PropertyChanged += (_, __) => this.PlayPauseCommand.ChangeCanExecute();
         }
-
 
 
         private string buttonText = string.Empty;
@@ -23,7 +25,12 @@
             set => SetProperty(ref this.buttonText, value);
         }
 
-        public bool IsPaused { get; set; }
+        private bool isPaused = true;
+        public bool IsPaused
+        {
+            get => this.isPaused;
+            set => SetProperty(ref this.isPaused, value, nameof(this.isPaused), TryRecordLocation);
+        }
 
         public void ChangeRecordingState()
         {
@@ -32,6 +39,8 @@
         }
         public Command PlayPauseCommand { get; }
 
+        public ObservableCollection<Location> TrackedRoute = new();
+
 
         private void OnPlayPause() => ChangeRecordingState();
 
@@ -39,6 +48,36 @@
 
         // emanuel5325 - agregar una validación si corresponde
         private bool ValidatePlayPause() => true;
+
+        private void TryRecordLocation()
+        {
+            if (this.IsPaused)
+            {
+                TryStopListeningGeolocation();
+            }
+            else
+            {
+                TryStartListeningGeolocation();
+            }
+        }
+
+        private void TryStopListeningGeolocation()
+        {
+            //emanuel5325 - tratar de apagar el listener
+            var a = 0;
+            a++;
+            Console.WriteLine(a);
+        }
+
+        private void TryStartListeningGeolocation()
+        {
+            // emanuel5325 - tratar de iniciar el listener con un span de cinco segundos y que este agregue cosas
+            // al listado de localizaciones
+
+            var a = 22;
+            a++;
+            Console.WriteLine(a);
+        }
 
     }
 }
