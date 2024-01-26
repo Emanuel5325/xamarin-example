@@ -4,6 +4,7 @@
              x:Class="MauiExample.Views.MapPage"
              xmlns:map="clr-namespace:MauiExample.CustomRender"
              xmlns:vm="clr-namespace:MauiExample.ViewModels"
+             xmlns:model="clr-namespace:Microsoft.Maui.Devices.Sensors;assembly=Microsoft.Maui.Essentials"  
              Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout Padding="10" Spacing="10">
@@ -15,6 +16,41 @@
                         Text="{Binding ButtonText}" 
                         Command="{Binding PlayPauseCommand}"/>
             </StackLayout>
+            <ScrollView MinimumHeightRequest="100"
+                        MaximumHeightRequest="100">
+                <ListView x:Name="LocationListView"
+                        ItemsSource="{Binding TrackedRoute}"
+                        SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0"
+                                            Text="{Binding Latitude}" />
+                                    <Label Grid.Column="1"
+                                            Text=", " />
+                                    <Label Grid.Column="2"
+                                            Text="{Binding Longitude}" />
+                                </Grid>
+                            </ViewCell>
+
+
+                            <!--<StackLayout Padding="10" x:DataType="model:Location">
+                                <Label Text="{Binding Latitude}"/>
+                                <Label Text="{Binding Longitude}"/>
+                            </StackLayout>-->
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
