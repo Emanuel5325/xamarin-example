@@ -15,7 +15,8 @@ namespace MauiExample.Views
             this.BindingContext = this._viewModel = new MapViewModel();
             _ = LoadMapAsync();
 
-            this._viewModel.TrackedRoute.CollectionChanged += ReloadMap;
+            this._viewModel.TrackedRoute.CollectionChanged += _viewModel_TrackedRoute_CollectionChanged;
+            this._viewModel.PropertyChanged += _viewModel_PropertyChanged;
         }
 
         public async Task LoadMapAsync()
@@ -99,7 +100,7 @@ namespace MauiExample.Views
             this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"")");
         }
 
-        private void ReloadMap(object sender, NotifyCollectionChangedEventArgs e)
+        private void _viewModel_TrackedRoute_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
             {
@@ -119,13 +120,61 @@ namespace MauiExample.Views
                             "blue");
                     }
                 }
-                else if (this._viewModel.TrackedRoute.Any())
-                {
-                    var firstLocation = this._viewModel.TrackedRoute.First();
-                    newMarker(firstLocation.Latitude.ToString(), firstLocation.Longitude.ToString(), "Comienzo");
-                }
-                // emanuel5325 - debería recentrar el mapa
+                CenterMap();
             }
+        }
+
+        private void _viewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(this._viewModel.IsPaused))
+            {
+                var markerLabel = this._viewModel.IsPaused ? "Final" : "Comienzo";
+                var locationTask = GetCurrentLocation();
+                locationTask.Wait();
+
+                var location = locationTask.Result;
+
+                newMarker(location.Latitude.ToString(), location.Longitude.ToString(), markerLabel);
+
+                this._viewModel.TrackedRoute.Add(location);
+                CenterMap();
+            }
+        }
+
+        public async Task<Location> GetCurrentLocation()
+        {
+            try
+            {
+                var request = new GeolocationRequest(MapViewModel.ACCURACY, TimeSpan.FromSeconds(MapViewModel.REFRESH_TIME_IN_SECONDS));
+
+                var location = await Geolocation.Default.GetLocationAsync(request);
+
+                if (location != null)
+                {
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}");
+                }
+                return location;
+            }
+            // Catch one of the following exceptions:
+            //   FeatureNotSupportedException
+            //   FeatureNotEnabledException
+            //   PermissionException
+            catch (Exception)
+            {
+                // Unable to get location
+            }
+
+            return null;
+        }
+
+        private void CenterMap()
+        {
+            var trackedRoute = this._viewModel.TrackedRoute;
+
+            var averageLatitude = trackedRoute.Sum(location => location.Latitude) / trackedRoute.Count;
+            var averageLongitude = trackedRoute.Sum(location => location.Longitude) / trackedRoute.Count;
+
+            CenterMap(averageLatitude.ToString(), averageLongitude.ToString());
         }
     }
 }

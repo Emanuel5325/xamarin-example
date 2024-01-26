@@ -7,10 +7,13 @@ namespace MauiExample.ViewModels
         private const string PAUSE = "Pause";
         private const string PLAY = "Play";
 
+        public const GeolocationAccuracy ACCURACY = GeolocationAccuracy.High;
+        public const int REFRESH_TIME_IN_SECONDS = 5;
+
         public MapViewModel()
         {
             this.Title = "Mapa";
-            this.IsPaused = true;
+            this.isPaused = true;
             SetButtonText();
 
             this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
@@ -90,8 +93,7 @@ namespace MauiExample.ViewModels
             try
             {
                 Geolocation.LocationChanged += Geolocation_LocationChanged;
-                const int REFRESH_TIME = 5;
-                var request = new GeolocationListeningRequest(GeolocationAccuracy.High, TimeSpan.FromSeconds(REFRESH_TIME));
+                var request = new GeolocationListeningRequest(ACCURACY, TimeSpan.FromSeconds(REFRESH_TIME_IN_SECONDS));
                 var success = await Geolocation.StartListeningForegroundAsync(request);
 
                 Console.WriteLine(success
