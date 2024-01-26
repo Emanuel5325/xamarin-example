@@ -108,7 +108,9 @@ namespace MauiExample.Views
                 if (this._viewModel.TrackedRoute.Count > 1)
                 {
                     var firstNewLocation = e.NewItems[0] as Location;
-                    var startIndex = this._viewModel.TrackedRoute.IndexOf(firstNewLocation);
+                    var startIndex = e.NewItems.Count == this._viewModel.TrackedRoute.Count ?
+                        1
+                        : this._viewModel.TrackedRoute.IndexOf(firstNewLocation);
 
                     for (var i = startIndex; i < this._viewModel.TrackedRoute.Count; i++)
                     {
@@ -124,19 +126,16 @@ namespace MauiExample.Views
             }
         }
 
-        private void _viewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void _viewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(this._viewModel.IsPaused))
             {
                 var markerLabel = this._viewModel.IsPaused ? "Final" : "Comienzo";
-                var locationTask = GetCurrentLocation();
-                locationTask.Wait();
-
-                var location = locationTask.Result;
+                var location = await GetCurrentLocation();
 
                 newMarker(location.Latitude.ToString(), location.Longitude.ToString(), markerLabel);
 
-                this._viewModel.TrackedRoute.Add(location);
+                this._viewModel.TrackedRouteAdd(location);
                 CenterMap();
             }
         }
@@ -174,7 +173,7 @@ namespace MauiExample.Views
             var averageLatitude = trackedRoute.Sum(location => location.Latitude) / trackedRoute.Count;
             var averageLongitude = trackedRoute.Sum(location => location.Longitude) / trackedRoute.Count;
 
-            CenterMap(averageLatitude.ToString(), averageLongitude.ToString());
+            //CenterMap(averageLatitude.ToString(), averageLongitude.ToString());
         }
     }
 }

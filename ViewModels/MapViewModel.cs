@@ -43,8 +43,18 @@ namespace MauiExample.ViewModels
 
         public Command PlayPauseCommand { get; }
 
-        public ObservableCollection<Location> TrackedRoute = [];
+        public readonly ObservableCollection<Location> TrackedRoute = [];
 
+        public void TrackedRouteAdd(Location location)
+        {
+            if (this.TrackedRoute.Any()
+                && this.TrackedRoute.Last().Equals(location))
+            {
+                return;
+            }
+
+            this.TrackedRoute.Add(location);
+        }
 
         private void OnPlayPause() => ChangeRecordingState();
 
@@ -124,7 +134,7 @@ namespace MauiExample.ViewModels
 
         private void Geolocation_LocationChanged(object sender, GeolocationLocationChangedEventArgs e)
         {
-            this.TrackedRoute.Add(e.Location);
+            TrackedRouteAdd(e.Location);
             Console.WriteLine($"cambio de posición a: {e.Location.Latitude}, {e.Location.Longitude}");
         }
     }
