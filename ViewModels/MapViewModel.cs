@@ -32,7 +32,7 @@ namespace MauiExample.ViewModels
         public bool IsPaused
         {
             get => this.isPaused;
-            set => SetProperty(ref this.isPaused, value, nameof(this.isPaused), TryRecordLocation);
+            set => SetProperty(ref this.isPaused, value, nameof(this.IsPaused), TryRecordLocation);
         }
 
         public void ChangeRecordingState()
