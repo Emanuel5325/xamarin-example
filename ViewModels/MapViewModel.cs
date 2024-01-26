@@ -15,6 +15,7 @@ namespace MauiExample.ViewModels
             this.Title = "Mapa";
             this.isPaused = true;
             SetButtonText();
+            this.TrackedRoute = [];
 
             this.PlayPauseCommand = new Command(OnPlayPause, ValidatePlayPause);
             PropertyChanged += (_, __) => this.PlayPauseCommand.ChangeCanExecute();
@@ -43,7 +44,7 @@ namespace MauiExample.ViewModels
 
         public Command PlayPauseCommand { get; }
 
-        public readonly ObservableCollection<Location> TrackedRoute = [];
+        public ObservableCollection<Location> TrackedRoute { get; }
 
         public void TrackedRouteAdd(Location location)
         {
