@@ -12,7 +12,6 @@ namespace MauiExample.Views
         {
             InitializeComponent();
 
-            // TODO Xamarin.Forms.Device.RuntimePlatform is no longer supported. Use Microsoft.Maui.Devices.DeviceInfo.Platform instead. For more details see https://learn.microsoft.com/en-us/dotnet/maui/migration/forms-projects#device-changes
             this.Padding = Device.RuntimePlatform switch
             {
                 Device.iOS => new Thickness(40, 60, 40, 40),
