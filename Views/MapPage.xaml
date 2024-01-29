@@ -41,12 +41,6 @@
                                             Text="{Binding Longitude}" />
                                 </Grid>
                             </ViewCell>
-
-
-                            <!--<StackLayout Padding="10" x:DataType="model:Location">
-                                <Label Text="{Binding Latitude}"/>
-                                <Label Text="{Binding Longitude}"/>
-                            </StackLayout>-->
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
