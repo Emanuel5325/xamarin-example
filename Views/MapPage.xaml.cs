@@ -173,7 +173,7 @@ namespace MauiExample.Views
             var averageLatitude = trackedRoute.Sum(location => location.Latitude) / trackedRoute.Count;
             var averageLongitude = trackedRoute.Sum(location => location.Longitude) / trackedRoute.Count;
 
-            //CenterMap(averageLatitude.ToString(), averageLongitude.ToString());
+            CenterMap(averageLatitude.ToString(), averageLongitude.ToString());
         }
     }
 }
