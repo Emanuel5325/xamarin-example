@@ -47,6 +47,7 @@ namespace MauiExample.Views
                 await DisplayAlert("Aviso!", "error al cargar el mapa...", "entendido");
             }
 
+            await GetCurrentLocation();
         }
 
         public void SetItemMuestra()
@@ -133,6 +134,11 @@ namespace MauiExample.Views
                 var markerLabel = this._viewModel.IsPaused ? "Final" : "Comienzo";
                 var location = await GetCurrentLocation();
 
+                if (location == null)
+                {
+                    return;
+                }
+
                 newMarker(location.Latitude.ToString(), location.Longitude.ToString(), markerLabel);
 
                 this._viewModel.TrackedRouteAdd(location);
@@ -157,7 +163,10 @@ namespace MauiExample.Views
             // Catch one of the following exceptions:
             //   FeatureNotSupportedException
             //   FeatureNotEnabledException
-            //   PermissionException
+            catch (PermissionException)
+            {
+                return null;
+            }
             catch (Exception)
             {
                 // Unable to get location
