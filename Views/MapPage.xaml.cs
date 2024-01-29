@@ -1,6 +1,7 @@
 using MauiExample.CustomRender;
 using MauiExample.ViewModels;
 using System.Collections.Specialized;
+using System.Globalization;
 
 namespace MauiExample.Views
 {
@@ -118,8 +119,8 @@ namespace MauiExample.Views
                         var locationFrom = this._viewModel.TrackedRoute[i - 1];
                         var locationTo = this._viewModel.TrackedRoute[i];
 
-                        newLine(locationFrom.Latitude.ToString(), locationFrom.Longitude.ToString(),
-                            locationTo.Latitude.ToString(), locationTo.Longitude.ToString(),
+                        newLine(locationFrom.Latitude.ToString(CultureInfo.InvariantCulture), locationFrom.Longitude.ToString(CultureInfo.InvariantCulture),
+                            locationTo.Latitude.ToString(CultureInfo.InvariantCulture), locationTo.Longitude.ToString(CultureInfo.InvariantCulture),
                             "blue");
                     }
                 }
@@ -139,7 +140,7 @@ namespace MauiExample.Views
                     return;
                 }
 
-                newMarker(location.Latitude.ToString(), location.Longitude.ToString(), markerLabel);
+                newMarker(location.Latitude.ToString(CultureInfo.InvariantCulture), location.Longitude.ToString(CultureInfo.InvariantCulture), markerLabel);
 
                 this._viewModel.TrackedRouteAdd(location);
                 CenterMap();
@@ -182,7 +183,7 @@ namespace MauiExample.Views
             var averageLatitude = trackedRoute.Sum(location => location.Latitude) / trackedRoute.Count;
             var averageLongitude = trackedRoute.Sum(location => location.Longitude) / trackedRoute.Count;
 
-            CenterMap(averageLatitude.ToString(), averageLongitude.ToString());
+            CenterMap(averageLatitude.ToString(CultureInfo.InvariantCulture), averageLongitude.ToString(CultureInfo.InvariantCulture));
         }
     }
 }
