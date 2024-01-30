@@ -61,7 +61,7 @@ namespace MauiExample.Views
 
             Show();
 
-            CenterMap("-2.14003", "-79.9312967");
+            CenterMap("-2.14003", "-79.9312967", 14);
         }
         public void newMarker(string latitude, string longitude, string markerLabel = "")
         {
@@ -93,16 +93,14 @@ namespace MauiExample.Views
         }
         public void Show() => this.webView.Eval(@"show()");
 
-        public void CenterMap(string latitude, string longitude)
+        public void CenterMap(string latitude, string longitude, int zoom)
         {
             if (string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
             {
                 return;
             }
-            this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"")");
+            this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"", {zoom})");
         }
-
-        public void SetZoom(int zoom) => this.webView.Eval($@"setZoom({zoom.ToString(CultureInfo.InvariantCulture)})");
 
         private void _viewModel_TrackedRoute_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -188,8 +186,8 @@ namespace MauiExample.Views
             var centerLatitude = (maxLocation.Latitude + minLocation.Latitude) / 2;
             var centerLongitude = (maxLocation.Longitude + minLocation.Longitude) / 2;
 
-            CenterMap(centerLatitude.ToString(CultureInfo.InvariantCulture), centerLongitude.ToString(CultureInfo.InvariantCulture));
-            SetZoom(GetZoomNumber(minLocation, maxLocation));
+            CenterMap(centerLatitude.ToString(CultureInfo.InvariantCulture), centerLongitude.ToString(CultureInfo.InvariantCulture),
+                GetZoomNumber(minLocation, maxLocation));
         }
 
         private int GetZoomNumber(Location minLocation, Location maxLocation)

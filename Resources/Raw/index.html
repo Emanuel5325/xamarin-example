@@ -103,15 +103,15 @@
             markerGroup.addTo(map);
         }
 
-        function centerMap(latitude, longitude) {
-            map.panTo(new L.LatLng(latitude, longitude));
-        }
-
-        function setZoom(zoom) {
-            map.setZoom(zoom, {
-                animate: true,
-                duration: 1,
-            });
+        function centerMap(latitude, longitude, zoom) {
+            map.setView(
+                new L.LatLng(latitude, longitude),
+                zoom,
+                {
+                    animate: true,
+                    duration: 1,
+                }
+            );
         }
 
         function deleteMarkers() {
