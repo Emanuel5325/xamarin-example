@@ -180,8 +180,8 @@ namespace MauiExample.Views
         {
             var trackedRoute = this._viewModel.TrackedRoute;
 
-            var averageLatitude = trackedRoute.Sum(location => location.Latitude) / trackedRoute.Count;
-            var averageLongitude = trackedRoute.Sum(location => location.Longitude) / trackedRoute.Count;
+            var averageLatitude = (trackedRoute.Max(location => location.Latitude) + trackedRoute.Min(location => location.Latitude)) / 2;
+            var averageLongitude = (trackedRoute.Max(location => location.Longitude) + trackedRoute.Min(location => location.Longitude)) / 2;
 
             CenterMap(averageLatitude.ToString(CultureInfo.InvariantCulture), averageLongitude.ToString(CultureInfo.InvariantCulture));
         }
