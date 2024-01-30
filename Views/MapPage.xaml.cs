@@ -102,6 +102,8 @@ namespace MauiExample.Views
             this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"")");
         }
 
+        public void SetZoom(int zoom) => this.webView.Eval($@"setZoom({zoom.ToString(CultureInfo.InvariantCulture)})");
+
         private void _viewModel_TrackedRoute_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (e.Action == NotifyCollectionChangedAction.Add)
@@ -184,6 +186,22 @@ namespace MauiExample.Views
             var averageLongitude = (trackedRoute.Max(location => location.Longitude) + trackedRoute.Min(location => location.Longitude)) / 2;
 
             CenterMap(averageLatitude.ToString(CultureInfo.InvariantCulture), averageLongitude.ToString(CultureInfo.InvariantCulture));
+            SetZoom(GetZoomNumber());
+        }
+
+        private int GetZoomNumber()
+        {
+            if (!this._viewModel.TrackedRoute.Any())
+            {
+                return 4;
+            }
+            else if (this._viewModel.TrackedRoute.Count == 1)
+            {
+                return 20;
+            }
+
+            // emanuel5325 - pendiente de la generación del cálculo del zoom
+            return 18;
         }
     }
 }

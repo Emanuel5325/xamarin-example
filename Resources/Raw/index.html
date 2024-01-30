@@ -107,6 +107,10 @@
             map.panTo(new L.LatLng(latitude, longitude));
         }
 
+        function setZoom(zoom) {
+            map.setZoom(zoom);
+        }
+
         function deleteMarkers() {
             markerGroup.clearLayers().addTo(map);
         }
