@@ -182,14 +182,17 @@ namespace MauiExample.Views
         {
             var trackedRoute = this._viewModel.TrackedRoute;
 
-            var averageLatitude = (trackedRoute.Max(location => location.Latitude) + trackedRoute.Min(location => location.Latitude)) / 2;
-            var averageLongitude = (trackedRoute.Max(location => location.Longitude) + trackedRoute.Min(location => location.Longitude)) / 2;
+            var minLocation = new Location(trackedRoute.Min(location => location.Latitude), trackedRoute.Min(location => location.Longitude));
+            var maxLocation = new Location(trackedRoute.Max(location => location.Latitude), trackedRoute.Max(location => location.Longitude));
 
-            CenterMap(averageLatitude.ToString(CultureInfo.InvariantCulture), averageLongitude.ToString(CultureInfo.InvariantCulture));
-            SetZoom(GetZoomNumber());
+            var centerLatitude = (maxLocation.Latitude + minLocation.Latitude) / 2;
+            var centerLongitude = (maxLocation.Longitude + minLocation.Longitude) / 2;
+
+            CenterMap(centerLatitude.ToString(CultureInfo.InvariantCulture), centerLongitude.ToString(CultureInfo.InvariantCulture));
+            SetZoom(GetZoomNumber(minLocation, maxLocation));
         }
 
-        private int GetZoomNumber()
+        private int GetZoomNumber(Location minLocation, Location maxLocation)
         {
             if (!this._viewModel.TrackedRoute.Any())
             {
@@ -200,8 +203,29 @@ namespace MauiExample.Views
                 return 20;
             }
 
-            // emanuel5325 - pendiente de la generación del cálculo del zoom
-            return 18;
+            var distance = minLocation.CalculateDistance(maxLocation, DistanceUnits.Kilometers);
+            if (distance < 1)
+            {
+                return 16;
+            }
+            else if (distance < 2)
+            {
+                return 15;
+            }
+            else if (distance < 4)
+            {
+                return 13;
+            }
+            else if (distance < 6)
+            {
+                return 11;
+            }
+            else if (distance < 8)
+            {
+                return 10;
+            }
+
+            return 8;
         }
     }
 }

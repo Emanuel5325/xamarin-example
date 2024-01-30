@@ -108,7 +108,10 @@
         }
 
         function setZoom(zoom) {
-            map.setZoom(zoom);
+            map.setZoom(zoom, {
+                animate: true,
+                duration: 1,
+            });
         }
 
         function deleteMarkers() {
