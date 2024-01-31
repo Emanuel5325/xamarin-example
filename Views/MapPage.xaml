@@ -16,7 +16,8 @@
                         Text="{Binding ButtonText}" 
                         Command="{Binding PlayPauseCommand}"/>
             </StackLayout>
-            <ScrollView MinimumHeightRequest="100"
+            <ScrollView Orientation="Vertical"
+                        MinimumHeightRequest="100"
                         MaximumHeightRequest="100">
                 <ListView x:Name="LocationListView"
                         ItemsSource="{Binding TrackedRoute}"

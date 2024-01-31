@@ -5,13 +5,10 @@
              xmlns:vm="clr-namespace:MauiExample.ViewModels"
              Title="{Binding Title}">
 
-    <ContentPage.BindingContext>
-        <vm:AboutViewModel />
-    </ContentPage.BindingContext>
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Primary}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
@@ -21,7 +18,7 @@
                 </ContentView>
             </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1">
+        <ScrollView Grid.Row="1" MinimumHeightRequest="100">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="Start developing now" FontSize="Title"/>
                 <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="0,0,0,0"/>
@@ -40,6 +37,38 @@
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
             </StackLayout>
+        </ScrollView>
+        <ScrollView Grid.Row="2" MinimumHeightRequest="100">
+            <ListView x:Name="InspectionsListView"
+                        ItemsSource="{Binding Inspections}"
+                        SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="10"
+                                  MinimumHeightRequest="100">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0"
+                                               TextColor="Black"
+                                               BackgroundColor="Green"
+                                               Text="{Binding Title}" 
+                                               FontSize="Title"/>
+                                <Label Grid.Row="1"
+                                               Text="{Binding Title}" 
+                                               TextColor="Black"
+                                               BackgroundColor="Green"
+                                               FontSize="Subtitle"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollView>
     </Grid>
 </ContentPage>

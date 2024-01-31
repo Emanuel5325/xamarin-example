@@ -1,7 +1,17 @@
+using MauiExample.ViewModels;
+
 namespace MauiExample.Views
 {
     public partial class AboutPage : ContentPage
     {
-        public AboutPage() => InitializeComponent();
+
+        private readonly AboutViewModel _viewModel;
+
+        public AboutPage()
+        {
+            InitializeComponent();
+
+            this.BindingContext = this._viewModel = new AboutViewModel();
+        }
     }
 }
