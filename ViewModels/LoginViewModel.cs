@@ -7,6 +7,7 @@ namespace MauiExample.ViewModels
 
         public LoginViewModel()
         {
+            this.Title = "Login";
 
             this.LoginCommand = new Command(OnLogin, ValidateLogin);
             PropertyChanged += (_, __) => this.LoginCommand.ChangeCanExecute();
