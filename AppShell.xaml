@@ -11,11 +11,15 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />-->
 
-    <TabBar>
+    <ShellContent Title="Login"
+                  ContentTemplate="DataTemplate local:LoginPage"
+                  Route="LoginPage"/>
+
+    <!--<TabBar>
         <ShellContent x:Name="AboutShellContent" Icon="dotnet_bot.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent x:Name="ItemsShellContent" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
         <ShellContent x:Name="GetWorkShellContent" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:GetWorkPage}" />
         <ShellContent x:Name="MapShellContent" Icon="dotnet_bot.png" ContentTemplate="{DataTemplate local:MapPage}" />
-    </TabBar>
+    </TabBar>-->
 
 </Shell>
