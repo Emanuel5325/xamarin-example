@@ -4,7 +4,7 @@ namespace MauiExample.Business.Database
 {
     public static class Constants
     {
-        public const string DatabaseFilename = "TodoSQLite.db3";
+        public const string DatabaseFilename = "MauiExampleSQLite.db3";
 
         public const SQLiteOpenFlags Flags =
             // open the database in read/write mode
