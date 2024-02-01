@@ -1,4 +1,5 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Database;
+using MauiExample.Models;
 using MauiExample.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -14,7 +15,7 @@ namespace MauiExample.ViewModels
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public ItemsViewModel(MauiExampleDatabase database) : base(database)
         {
             this.Title = "Browse";
             this.Items = [];

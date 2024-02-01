@@ -1,4 +1,5 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Database;
+using MauiExample.Models;
 
 namespace MauiExample.ViewModels
 {
@@ -7,7 +8,7 @@ namespace MauiExample.ViewModels
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public NewItemViewModel(MauiExampleDatabase database) : base(database)
         {
             this.SaveCommand = new Command(OnSave, ValidateSave);
             this.CancelCommand = new Command(OnCancel);

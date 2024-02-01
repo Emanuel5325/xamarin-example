@@ -1,3 +1,4 @@
+using MauiExample.Database;
 using MauiExample.ViewModels;
 
 namespace MauiExample.Views
@@ -6,11 +7,11 @@ namespace MauiExample.Views
     {
         private readonly ItemsViewModel _viewModel;
 
-        public ItemsPage()
+        public ItemsPage(MauiExampleDatabase database)
         {
             InitializeComponent();
 
-            this.BindingContext = this._viewModel = new ItemsViewModel();
+            this.BindingContext = this._viewModel = new ItemsViewModel(database);
         }
 
         protected override void OnAppearing()

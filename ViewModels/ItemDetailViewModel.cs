@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using MauiExample.Database;
+using System.Diagnostics;
 
 namespace MauiExample.ViewModels
 {
@@ -8,6 +9,12 @@ namespace MauiExample.ViewModels
         private int itemId;
         private string text;
         private string description;
+
+        public ItemDetailViewModel(MauiExampleDatabase database) : base(database)
+        {
+
+        }
+
         public int Id { get; set; }
 
         public string Text

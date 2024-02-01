@@ -1,11 +1,12 @@
-﻿using MauiExample.Views;
+﻿using MauiExample.Database;
+using MauiExample.Views;
 
 namespace MauiExample.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
 
-        public LoginViewModel()
+        public LoginViewModel(MauiExampleDatabase database) : base(database)
         {
             this.Title = "Login";
 

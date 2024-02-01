@@ -1,4 +1,5 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Database;
+using MauiExample.Models;
 using MauiExample.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,7 +10,7 @@ namespace MauiExample.ViewModels
     {
         public ObservableCollection<WorkInspection> Inspections;
 
-        public AboutViewModel()
+        public AboutViewModel(MauiExampleDatabase database) : base(database)
         {
             this.Title = "About";
             this.OpenWebCommand = new Command(AddInspection);

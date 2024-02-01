@@ -1,4 +1,5 @@
-﻿using MauiExample.Services.Work;
+﻿using MauiExample.Database;
+using MauiExample.Services.Work;
 using MauiExample.ViewModels;
 
 namespace MauiExample.Views
@@ -8,7 +9,7 @@ namespace MauiExample.Views
         private IWorkApiClient _workService => DependencyService.Get<IWorkApiClient>();
 
         [Obsolete]
-        public GetWorkPage()
+        public GetWorkPage(MauiExampleDatabase database)
         {
             InitializeComponent();
 
@@ -17,7 +18,7 @@ namespace MauiExample.Views
                 Device.iOS => new Thickness(40, 60, 40, 40),
                 _ => new Thickness(40),
             };
-            this.BindingContext = new GetWorkViewModel();
+            this.BindingContext = new GetWorkViewModel(database);
         }
 
         private void OnWorksQuantityCompleted(object sender, System.EventArgs e)

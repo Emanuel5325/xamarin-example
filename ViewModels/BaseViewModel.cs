@@ -7,7 +7,9 @@ namespace MauiExample.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-        public MauiExampleDatabase Database => DependencyService.Get<MauiExampleDatabase>();
+        public MauiExampleDatabase Database;
+
+        public BaseViewModel(MauiExampleDatabase database) => this.Database = database;
 
 
         private bool isBusy = false;
