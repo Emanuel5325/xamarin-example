@@ -1,4 +1,4 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Business.Models;
 
 namespace MauiExample.Services
 {
@@ -8,8 +8,8 @@ namespace MauiExample.Services
 
         public MockDataStore()
         {
-            this.items = new List<Item>()
-            {
+            this.items =
+            [
                 new()
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -46,7 +46,7 @@ namespace MauiExample.Services
                     Text = "Sixth item",
                     Description = "This is an item description."
                 }
-            };
+            ];
         }
 
         public async Task<bool> AddItemAsync(Item item)

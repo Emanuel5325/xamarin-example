@@ -4,7 +4,7 @@
              x:Class="MauiExample.Views.ItemsPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:MauiExample.ViewModels"  
-             xmlns:model="clr-namespace:MauiExample.Models"  
+             xmlns:model="clr-namespace:MauiExample.Business.Models"  
              x:Name="BrowseItemsPage" >
 
 

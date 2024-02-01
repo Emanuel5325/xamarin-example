@@ -1,4 +1,4 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Business.Models;
 using MauiExample.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
