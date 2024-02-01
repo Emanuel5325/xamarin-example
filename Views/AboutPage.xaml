@@ -40,7 +40,7 @@
                         TextColor="White" />
             </StackLayout>
         </ScrollView>
-        <ScrollView Grid.Row="2" MinimumHeightRequest="100">
+        <!--<ScrollView Grid.Row="2" MinimumHeightRequest="100">
             <ListView x:Name="InspectionsListView"
                         ItemsSource="{Binding Inspections}"
                         SelectionMode="None">
@@ -71,6 +71,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </ScrollView>
+        </ScrollView>-->
     </Grid>
 </ContentPage>
