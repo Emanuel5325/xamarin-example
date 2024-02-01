@@ -1,5 +1,4 @@
-﻿using MauiExample.Models;
-using MauiExample.Services;
+﻿using MauiExample.Database;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -7,7 +6,9 @@ namespace MauiExample.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        //public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public MauiExampleDatabase Database => DependencyService.Get<MauiExampleDatabase>();
+
 
         private bool isBusy = false;
         public bool IsBusy

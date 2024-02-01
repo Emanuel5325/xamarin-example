@@ -30,6 +30,12 @@ namespace MauiExample.Database
             return await this.Database.Table<Item>().ToListAsync();
         }
 
+        public async Task<Item> GetItemAsync(int id)
+        {
+            await Init();
+            return await this.Database.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        }
+
         public async Task<int> SaveItemAsync(Item item)
         {
             await Init();

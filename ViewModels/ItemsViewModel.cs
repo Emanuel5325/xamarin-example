@@ -32,7 +32,8 @@ namespace MauiExample.ViewModels
             try
             {
                 this.Items.Clear();
-                var items = await this.DataStore.GetItemsAsync(true);
+                //var items = await this.DataStore.GetItemsAsync(true);
+                var items = await this.Database.GetItemsAsync();
                 foreach (var item in items)
                 {
                     this.Items.Add(item);
