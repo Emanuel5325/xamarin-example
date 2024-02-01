@@ -13,12 +13,6 @@ namespace MauiExample
             Routing.RegisterRoute(nameof(ItemsPage), typeof(ItemsPage));
             Routing.RegisterRoute(nameof(GetWorkPage), typeof(GetWorkPage));
             Routing.RegisterRoute(nameof(MapPage), typeof(MapPage));
-
-
-            //this.AboutShellContent.Title = new AboutViewModel().Title;
-            //this.ItemsShellContent.Title = new ItemsViewModel().Title;
-            //this.GetWorkShellContent.Title = new GetWorkViewModel().Title;
-            //this.MapShellContent.Title = new MapViewModel().Title;
         }
     }
 }
