@@ -1,4 +1,4 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Business.Models;
 using MauiExample.Views;
 using System.Collections.ObjectModel;
 using System.Windows.Input;

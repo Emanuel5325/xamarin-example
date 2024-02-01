@@ -1,4 +1,4 @@
-﻿namespace MauiExample.Models.Work
+﻿namespace MauiExample.Business.Models.Work
 {
     public class WorkData
     {

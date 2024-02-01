@@ -1,4 +1,4 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Business.Models;
 using MauiExample.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -17,7 +17,7 @@ namespace MauiExample.ViewModels
         public ItemsViewModel()
         {
             this.Title = "Browse";
-            this.Items = new ObservableCollection<Item>();
+            this.Items = [];
             this.LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             this.ItemTapped = new Command<Item>(OnItemSelected);

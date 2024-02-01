@@ -1,4 +1,4 @@
-﻿namespace MauiExample.Models
+﻿namespace MauiExample.Business.Models
 {
     public class WorkInspection
     {

@@ -1,4 +1,4 @@
-﻿using MauiExample.Models.Work;
+﻿using MauiExample.Business.Models.Work;
 
 namespace MauiExample.Services.Work
 {
@@ -6,10 +6,10 @@ namespace MauiExample.Services.Work
     {
         public List<WorkData> All(int page = 0, int pageSize = 100)
         {
-            return new List<WorkData>()
-            {
+            return
+            [
                 new() { Name = "prueba", Id = 3, }
-            };
+            ];
 
             //RestClient client = new("http://10.0.2.2:5501");
 
