@@ -1,5 +1,4 @@
-﻿using MauiExample.Services;
-using MauiExample.Services.Work;
+﻿using MauiExample.Services.Work;
 
 namespace MauiExample
 {
@@ -9,7 +8,6 @@ namespace MauiExample
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             DependencyService.Register<IWorkApiClient, WorkApiClient>();
             this.MainPage = new AppShell();
         }
