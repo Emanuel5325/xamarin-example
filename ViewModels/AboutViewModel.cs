@@ -15,6 +15,7 @@ namespace MauiExample.ViewModels
             this.OpenWebCommand = new Command(AddInspection);
             this.GoToMapCommand = new Command(GoToMap);
             this.GoToGetWorkCommand = new Command(GoToGetWork);
+            this.AddInspectionCommand = new Command(GoToNewInspection);
 
             this.Inspections = [];
         }
@@ -22,6 +23,8 @@ namespace MauiExample.ViewModels
         public ICommand OpenWebCommand { get; }
         public ICommand GoToMapCommand { get; }
         public ICommand GoToGetWorkCommand { get; }
+
+        public ICommand AddInspectionCommand { get; }
 
         private void AddInspection()
         {
@@ -47,5 +50,6 @@ namespace MauiExample.ViewModels
 
         private async void GoToMap() => await Shell.Current.GoToAsync(nameof(MapPage));
         private async void GoToGetWork() => await Shell.Current.GoToAsync(nameof(GetWorkPage));
+        private async void GoToNewInspection() => await Shell.Current.GoToAsync(nameof(ItemsPage));
     }
 }

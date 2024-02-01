@@ -5,6 +5,10 @@
              xmlns:vm="clr-namespace:MauiExample.ViewModels"
              Title="{Binding Title}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Nueva inspección" Command="{Binding AddInspectionCommand}" />
+    </ContentPage.ToolbarItems>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
