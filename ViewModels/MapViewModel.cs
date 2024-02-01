@@ -8,7 +8,7 @@ namespace MauiExample.ViewModels
         private const string PLAY = "Play";
 
         public const GeolocationAccuracy ACCURACY = GeolocationAccuracy.High;
-        public const int REFRESH_TIME_IN_SECONDS = 5;
+        public const int REFRESH_TIME_IN_SECONDS = 2;
 
         public MapViewModel()
         {

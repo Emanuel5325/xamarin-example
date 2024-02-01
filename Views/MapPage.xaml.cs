@@ -61,7 +61,7 @@ namespace MauiExample.Views
 
             Show();
 
-            CenterMap("-2.14003", "-79.9312967");
+            CenterMap("-2.14003", "-79.9312967", 14);
         }
         public void newMarker(string latitude, string longitude, string markerLabel = "")
         {
@@ -93,13 +93,13 @@ namespace MauiExample.Views
         }
         public void Show() => this.webView.Eval(@"show()");
 
-        public void CenterMap(string latitude, string longitude)
+        public void CenterMap(string latitude, string longitude, int zoom)
         {
             if (string.IsNullOrEmpty(latitude) || string.IsNullOrEmpty(longitude))
             {
                 return;
             }
-            this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"")");
+            this.webView.Eval($@"centerMap(""{latitude}"",""{longitude}"", {zoom})");
         }
 
         private void _viewModel_TrackedRoute_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -180,10 +180,50 @@ namespace MauiExample.Views
         {
             var trackedRoute = this._viewModel.TrackedRoute;
 
-            var averageLatitude = trackedRoute.Sum(location => location.Latitude) / trackedRoute.Count;
-            var averageLongitude = trackedRoute.Sum(location => location.Longitude) / trackedRoute.Count;
+            var minLocation = new Location(trackedRoute.Min(location => location.Latitude), trackedRoute.Min(location => location.Longitude));
+            var maxLocation = new Location(trackedRoute.Max(location => location.Latitude), trackedRoute.Max(location => location.Longitude));
 
-            CenterMap(averageLatitude.ToString(CultureInfo.InvariantCulture), averageLongitude.ToString(CultureInfo.InvariantCulture));
+            var centerLatitude = (maxLocation.Latitude + minLocation.Latitude) / 2;
+            var centerLongitude = (maxLocation.Longitude + minLocation.Longitude) / 2;
+
+            CenterMap(centerLatitude.ToString(CultureInfo.InvariantCulture), centerLongitude.ToString(CultureInfo.InvariantCulture),
+                GetZoomNumber(minLocation, maxLocation));
+        }
+
+        private int GetZoomNumber(Location minLocation, Location maxLocation)
+        {
+            if (!this._viewModel.TrackedRoute.Any())
+            {
+                return 4;
+            }
+            else if (this._viewModel.TrackedRoute.Count == 1)
+            {
+                return 20;
+            }
+
+            var distance = minLocation.CalculateDistance(maxLocation, DistanceUnits.Kilometers);
+            if (distance < 1)
+            {
+                return 16;
+            }
+            else if (distance < 2)
+            {
+                return 15;
+            }
+            else if (distance < 4)
+            {
+                return 13;
+            }
+            else if (distance < 6)
+            {
+                return 11;
+            }
+            else if (distance < 8)
+            {
+                return 10;
+            }
+
+            return 8;
         }
     }
 }
