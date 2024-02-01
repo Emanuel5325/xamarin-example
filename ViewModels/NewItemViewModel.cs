@@ -42,13 +42,11 @@ namespace MauiExample.ViewModels
             Item newItem =
                 new()
                 {
-                    //Id = this.DataStore.GetId(),
                     Id = 0,
                     Text = this.Text,
                     Description = this.Description
                 };
 
-            //await this.DataStore.AddItemAsync(newItem);
             await this.Database.SaveItemAsync(newItem);
 
             // This will pop the current page off the navigation stack

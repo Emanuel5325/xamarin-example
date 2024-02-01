@@ -43,7 +43,6 @@ namespace MauiExample.ViewModels
         {
             try
             {
-                //var item = await this.DataStore.GetItemAsync(itemId);
                 var item = await this.Database.GetItemAsync(itemId);
                 this.Id = item.Id;
                 this.Text = item.Text;
