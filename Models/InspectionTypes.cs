@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace MauiExample.Business.Models
+namespace MauiExample.Models
 {
     public enum InspectionTypes
     {

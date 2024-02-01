@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Net.Http.Headers;
 
-namespace MauiExample.Business.Models.Work
+namespace MauiExample.Models.Work
 {
     public class ApiRequestResult
     {

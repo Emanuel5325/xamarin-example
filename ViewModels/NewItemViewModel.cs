@@ -1,4 +1,4 @@
-﻿using MauiExample.Business.Models;
+﻿using MauiExample.Models;
 
 namespace MauiExample.ViewModels
 {

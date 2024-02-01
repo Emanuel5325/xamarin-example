@@ -1,4 +1,4 @@
-﻿namespace MauiExample.Business.Models
+﻿namespace MauiExample.Models
 {
     public class Item
     {
