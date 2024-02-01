@@ -5,10 +5,10 @@ namespace MauiExample.ViewModels
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
+        private int itemId;
         private string text;
         private string description;
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string Text
         {
@@ -22,7 +22,7 @@ namespace MauiExample.ViewModels
             set => SetProperty(ref this.description, value);
         }
 
-        public string ItemId
+        public int ItemId
         {
             get => this.itemId;
             set
@@ -32,7 +32,7 @@ namespace MauiExample.ViewModels
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public async void LoadItemId(int itemId)
         {
             try
             {

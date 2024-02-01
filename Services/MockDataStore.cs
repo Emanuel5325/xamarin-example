@@ -8,41 +8,42 @@ namespace MauiExample.Services
 
         public MockDataStore()
         {
+            var i = 0;
             this.items =
             [
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = i++,
                     Text = "First item",
                     Description = "This is an item description."
                 },
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = i++,
                     Text = "Second item",
                     Description = "This is an item description."
                 },
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = i++,
                     Text = "Third item",
                     Description = "This is an item description."
                 },
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = i++,
                     Text = "Fourth item",
                     Description = "This is an item description."
                 },
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = i++,
                     Text = "Fifth item",
                     Description = "This is an item description."
                 },
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = i++,
                     Text = "Sixth item",
                     Description = "This is an item description."
                 }
@@ -65,7 +66,7 @@ namespace MauiExample.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(int id)
         {
             var oldItem = this.items.Where((Item arg) => arg.Id == id).FirstOrDefault();
             _ = this.items.Remove(oldItem);
@@ -73,8 +74,9 @@ namespace MauiExample.Services
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id) => await Task.FromResult(this.items.FirstOrDefault(s => s.Id == id));
+        public async Task<Item> GetItemAsync(int id) => await Task.FromResult(this.items.FirstOrDefault(s => s.Id == id));
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false) => await Task.FromResult(this.items);
+        public int GetId() => this.items.Max(_ => _.Id) + 1;
     }
 }

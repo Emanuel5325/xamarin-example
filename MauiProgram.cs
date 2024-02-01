@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiExample.Database;
+using Microsoft.Extensions.Logging;
 
 namespace MauiExample
 {
@@ -18,6 +19,9 @@ namespace MauiExample
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+
+            builder.Services.AddSingleton<MauiExampleDatabase>();
 
             return builder.Build();
         }

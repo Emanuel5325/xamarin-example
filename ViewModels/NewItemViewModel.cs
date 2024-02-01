@@ -41,7 +41,7 @@ namespace MauiExample.ViewModels
             Item newItem =
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = this.DataStore.GetId(),
                     Text = this.Text,
                     Description = this.Description
                 };
