@@ -1,85 +1,97 @@
-﻿using MauiExample.Business.Database;
-using MauiExample.Models;
-using SQLite;
+﻿using MauiExample.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MauiExample.Database
 {
     public class MauiExampleDatabase
     {
-        private SQLiteAsyncConnection Database;
+        //private SqliteConnection Database;
+        private MauiExampleContext Database;
 
         public MauiExampleDatabase()
         {
         }
 
-        private async Task Init()
+        private void Init()
         {
             if (this.Database is not null)
             {
                 return;
             }
 
-            this.Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            _ = await this.Database.CreateTableAsync<Item>();
-            _ = await this.Database.CreateTableAsync<WorkLocation>();
+            //this.Database = new SqliteConnection(Constants.DatabasePath, Constants.Flags);
+            //_ = await this.Database.CreateTableAsync<Item>();
+            //_ = await this.Database.CreateTableAsync<WorkLocation>();
+
+            this.Database = new MauiExampleContext();
         }
 
         public async Task<List<Item>> GetItemsAsync()
         {
-            await Init();
-            return await this.Database.Table<Item>().ToListAsync();
+            Init();
+            return await this.Database.Items.ToListAsync();
         }
 
         public async Task<Item> GetItemAsync(int id)
         {
-            await Init();
-            return await this.Database.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
+            Init();
+            return await this.Database.Items.Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public async Task<int> SaveItemAsync(Item item)
+        public async Task<Item> SaveItem(Item item)
         {
-            await Init();
+            Init();
             if (item.Id != 0)
             {
-                return await this.Database.UpdateAsync(item);
+                this.Database.Items.Update(item);
             }
             else
             {
-                return await this.Database.InsertAsync(item);
+                await this.Database.Items.AddAsync(item);
             }
+
+            this.Database.SaveChanges();
+
+            return item;
         }
 
-        public async Task<int> DeleteItemAsync(Item item)
+        public void DeleteItem(Item item)
         {
-            await Init();
-            return await this.Database.DeleteAsync(item);
+            Init();
+            this.Database.Items.Remove(item);
+            this.Database.SaveChanges();
         }
 
 
 
         public async Task<List<WorkLocation>> GetWorkLocationsAsync()
         {
-            await Init();
-            return await this.Database.Table<WorkLocation>().ToListAsync();
+            Init();
+            return await this.Database.WorkLocations.ToListAsync();
         }
 
-        public async Task<int> SaveLocationAsync(WorkLocation workLocation)
+        public async Task<WorkLocation> SaveLocationAsync(WorkLocation workLocation)
         {
-            await Init();
+            Init();
             if (workLocation.Id != 0)
             {
-                return await this.Database.UpdateAsync(workLocation);
+                this.Database.WorkLocations.Update(workLocation);
             }
             else
             {
-                return await this.Database.InsertAsync(workLocation);
+                await this.Database.WorkLocations.AddAsync(workLocation);
             }
+
+            this.Database.SaveChanges();
+
+            return workLocation;
         }
 
-        public async Task<int> DeleteLocationAsync(WorkLocation workLocation)
+        public void DeleteLocationAsync(WorkLocation workLocation)
         {
-            await Init();
-            return await this.Database.DeleteAsync(workLocation);
+            Init();
+            this.Database.WorkLocations.Remove(workLocation);
+            this.Database.SaveChanges();
         }
 
     }
