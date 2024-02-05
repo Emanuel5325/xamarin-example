@@ -15,13 +15,12 @@ namespace MauiExample.Database
         public MauiExampleContext()
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
-            _ = Environment.GetFolderPath(folder);
-            //this.DbPath = Path.Join(path, "blogging.db");
-            this.DbPath = Constants.DatabasePath;
+            var path = Environment.GetFolderPath(folder);
+            this.DbPath = Path.Join(path, Constants.DatabaseFilename);
+
+            // emanuel5325 - agregar el cambio para que soporte IOS
         }
 
-        // The following configures EF to create a Sqlite database file in the
-        // special "local" folder for your platform.
-        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Data Source={this.DbPath}");
+        protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlite($"Filename={this.DbPath}");
     }
 }

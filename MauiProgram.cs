@@ -22,6 +22,7 @@ namespace MauiExample
 #endif
 
 
+            builder.Services.AddDbContext<MauiExampleContext>();
 
             builder.Services.AddSingleton<LoginPage>();
             builder.Services.AddTransient<ItemDetailPage>();
@@ -30,9 +31,15 @@ namespace MauiExample
             builder.Services.AddTransient<ItemsPage>();
             builder.Services.AddTransient<GetWorkPage>();
             builder.Services.AddTransient<MapPage>();
-
-
             builder.Services.AddSingleton<MauiExampleDatabase>();
+
+
+            var dbContext = new MauiExampleContext();
+            dbContext.Database.EnsureCreated();
+            dbContext.Dispose();
+
+
+
 
             return builder.Build();
         }

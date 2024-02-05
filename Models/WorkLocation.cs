@@ -1,9 +1,11 @@
-﻿namespace MauiExample.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MauiExample.Models
 {
     public class WorkLocation : Location
     {
 
-        //[PrimaryKey, AutoIncrement]
+        [Key]
         public int Id { get; set; }
     }
 }
