@@ -34,7 +34,13 @@ namespace MauiExample
             builder.Services.AddSingleton<MauiExampleDatabase>();
 
             var dbContext = new MauiExampleContext();
-            dbContext.Database.Migrate();
+            try
+            {
+                dbContext.Database.Migrate();
+            }
+            catch (Exception)
+            {
+            }
             dbContext.Dispose();
 
             return builder.Build();
