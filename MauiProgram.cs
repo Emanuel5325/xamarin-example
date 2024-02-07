@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiExample.Database;
+using MauiExample.Views;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace MauiExample
 {
@@ -18,6 +21,21 @@ namespace MauiExample
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+
+            builder.Services.AddDbContext<MauiExampleContext>();
+
+            builder.Services.AddSingleton<LoginPage>();
+            builder.Services.AddTransient<ItemDetailPage>();
+            builder.Services.AddTransient<NewItemPage>();
+            builder.Services.AddTransient<AboutPage>();
+            builder.Services.AddTransient<ItemsPage>();
+            builder.Services.AddTransient<GetWorkPage>();
+            builder.Services.AddTransient<MapPage>();
+            builder.Services.AddSingleton<MauiExampleDatabase>();
+
+            var dbContext = new MauiExampleContext();
+            dbContext.Database.Migrate();
+            dbContext.Dispose();
 
             return builder.Build();
         }

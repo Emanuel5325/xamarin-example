@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using MauiExample.Database;
+using System.Collections.ObjectModel;
 
 namespace MauiExample.ViewModels
 {
@@ -10,7 +11,7 @@ namespace MauiExample.ViewModels
         public const GeolocationAccuracy ACCURACY = GeolocationAccuracy.High;
         public const int REFRESH_TIME_IN_SECONDS = 2;
 
-        public MapViewModel()
+        public MapViewModel(MauiExampleDatabase database) : base(database)
         {
             this.Title = "Mapa";
             this.isPaused = true;

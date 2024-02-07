@@ -1,7 +1,9 @@
-﻿namespace MauiExample.ViewModels
+﻿using MauiExample.Database;
+
+namespace MauiExample.ViewModels
 {
     public class GetWorkViewModel : BaseViewModel
     {
-        public GetWorkViewModel() => this.Title = "Datos de Obra";
+        public GetWorkViewModel(MauiExampleDatabase database) : base(database) => this.Title = "Datos de Obra";
     }
 }

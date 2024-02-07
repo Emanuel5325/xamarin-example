@@ -1,4 +1,5 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Database;
+using MauiExample.Models;
 using MauiExample.Views;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -14,10 +15,10 @@ namespace MauiExample.ViewModels
         public Command AddItemCommand { get; }
         public Command<Item> ItemTapped { get; }
 
-        public ItemsViewModel()
+        public ItemsViewModel(MauiExampleDatabase database) : base(database)
         {
             this.Title = "Browse";
-            this.Items = new ObservableCollection<Item>();
+            this.Items = [];
             this.LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             this.ItemTapped = new Command<Item>(OnItemSelected);
@@ -32,7 +33,7 @@ namespace MauiExample.ViewModels
             try
             {
                 this.Items.Clear();
-                var items = await this.DataStore.GetItemsAsync(true);
+                var items = await this.Database.GetItemsAsync();
                 foreach (var item in items)
                 {
                     this.Items.Add(item);

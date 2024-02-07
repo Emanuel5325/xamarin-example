@@ -1,14 +1,21 @@
-﻿using System.Diagnostics;
+﻿using MauiExample.Database;
+using System.Diagnostics;
 
 namespace MauiExample.ViewModels
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
+        private int itemId;
         private string text;
         private string description;
-        public string Id { get; set; }
+
+        public ItemDetailViewModel(MauiExampleDatabase database) : base(database)
+        {
+
+        }
+
+        public int Id { get; set; }
 
         public string Text
         {
@@ -22,7 +29,7 @@ namespace MauiExample.ViewModels
             set => SetProperty(ref this.description, value);
         }
 
-        public string ItemId
+        public int ItemId
         {
             get => this.itemId;
             set
@@ -32,11 +39,11 @@ namespace MauiExample.ViewModels
             }
         }
 
-        public async void LoadItemId(string itemId)
+        public async void LoadItemId(int itemId)
         {
             try
             {
-                var item = await this.DataStore.GetItemAsync(itemId);
+                var item = await this.Database.GetItemAsync(itemId);
                 this.Id = item.Id;
                 this.Text = item.Text;
                 this.Description = item.Description;

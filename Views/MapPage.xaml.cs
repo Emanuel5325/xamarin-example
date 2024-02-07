@@ -1,4 +1,5 @@
 using MauiExample.CustomRender;
+using MauiExample.Database;
 using MauiExample.ViewModels;
 using System.Collections.Specialized;
 using System.Globalization;
@@ -9,11 +10,11 @@ namespace MauiExample.Views
     {
         private readonly MapViewModel _viewModel;
 
-        public MapPage()
+        public MapPage(MauiExampleDatabase database)
         {
             InitializeComponent();
 
-            this.BindingContext = this._viewModel = new MapViewModel();
+            this.BindingContext = this._viewModel = new MapViewModel(database);
             _ = LoadMapAsync();
 
             this._viewModel.TrackedRoute.CollectionChanged += _viewModel_TrackedRoute_CollectionChanged;

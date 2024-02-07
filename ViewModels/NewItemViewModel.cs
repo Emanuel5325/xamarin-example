@@ -1,4 +1,5 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Database;
+using MauiExample.Models;
 
 namespace MauiExample.ViewModels
 {
@@ -7,7 +8,7 @@ namespace MauiExample.ViewModels
         private string text;
         private string description;
 
-        public NewItemViewModel()
+        public NewItemViewModel(MauiExampleDatabase database) : base(database)
         {
             this.SaveCommand = new Command(OnSave, ValidateSave);
             this.CancelCommand = new Command(OnCancel);
@@ -41,12 +42,12 @@ namespace MauiExample.ViewModels
             Item newItem =
                 new()
                 {
-                    Id = Guid.NewGuid().ToString(),
+                    Id = 0,
                     Text = this.Text,
                     Description = this.Description
                 };
 
-            await this.DataStore.AddItemAsync(newItem);
+            await this.Database.SaveItem(newItem);
 
             // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");

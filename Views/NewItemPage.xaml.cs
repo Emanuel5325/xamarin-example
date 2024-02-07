@@ -1,4 +1,5 @@
-﻿using MauiExample.Models;
+﻿using MauiExample.Database;
+using MauiExample.Models;
 using MauiExample.ViewModels;
 
 namespace MauiExample.Views
@@ -7,10 +8,10 @@ namespace MauiExample.Views
     {
         public Item Item { get; set; }
 
-        public NewItemPage()
+        public NewItemPage(MauiExampleDatabase database)
         {
             InitializeComponent();
-            this.BindingContext = new NewItemViewModel();
+            this.BindingContext = new NewItemViewModel(database);
         }
     }
 }

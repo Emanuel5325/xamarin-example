@@ -1,3 +1,4 @@
+using MauiExample.Database;
 using MauiExample.ViewModels;
 
 namespace MauiExample.Views
@@ -7,11 +8,11 @@ namespace MauiExample.Views
 
         private readonly AboutViewModel _viewModel;
 
-        public AboutPage()
+        public AboutPage(MauiExampleDatabase database)
         {
             InitializeComponent();
 
-            this.BindingContext = this._viewModel = new AboutViewModel();
+            this.BindingContext = this._viewModel = new AboutViewModel(database);
         }
     }
 }
