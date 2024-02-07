@@ -1,5 +1,6 @@
 ﻿using MauiExample.Database;
 using MauiExample.Views;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace MauiExample
@@ -21,7 +22,6 @@ namespace MauiExample
             builder.Logging.AddDebug();
 #endif
 
-
             builder.Services.AddDbContext<MauiExampleContext>();
 
             builder.Services.AddSingleton<LoginPage>();
@@ -33,13 +33,9 @@ namespace MauiExample
             builder.Services.AddTransient<MapPage>();
             builder.Services.AddSingleton<MauiExampleDatabase>();
 
-
             var dbContext = new MauiExampleContext();
-            dbContext.Database.EnsureCreated();
+            dbContext.Database.Migrate();
             dbContext.Dispose();
-
-
-
 
             return builder.Build();
         }
